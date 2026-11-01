@@ -22,6 +22,7 @@ class AppColors {
   static const inputBorder = Color(0xFFD7DFDA);
   static const inputPrefixBg = Color(0xFFEDF1EE);
   static const navInactive = Color(0xFF849087);
+  static const dotInactive = Color(0xFFCFD7D1);
 
   static const stripDark = Color(0xFF123D28); // home booking strip
   static const roleDark = Color(0xFF113B27); // profile active-role card
