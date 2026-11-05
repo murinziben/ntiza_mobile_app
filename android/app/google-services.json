@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1072632978221",
+    "project_id": "ntiza-e9af2",
+    "storage_bucket": "ntiza-e9af2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072632978221:android:f8c545cbc8e974f24b51a4",
+        "android_client_info": {
+          "package_name": "com.ntiza.ntiza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072632978221-tuoutfr71nmusqlc1mffcpc9ovh9d0ld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWtgGAxADEBxnKBoMSVkYq5HfG3N-lxR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072632978221-tuoutfr71nmusqlc1mffcpc9ovh9d0ld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

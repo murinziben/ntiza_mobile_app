@@ -5,15 +5,15 @@ import 'app_colors.dart';
 
 ThemeData buildAppTheme() {
   final scheme = ColorScheme.fromSeed(
-    seedColor: AppColors.green,
+    seedColor: AppColors.primary,
     brightness: Brightness.light,
   ).copyWith(
-    primary: AppColors.green,
+    primary: AppColors.primary,
     onPrimary: AppColors.white,
-    secondary: AppColors.greenDark,
+    secondary: AppColors.primaryDark,
     surface: AppColors.white,
     onSurface: AppColors.ink,
-    outline: AppColors.line,
+    outline: AppColors.border,
     error: AppColors.danger,
   );
 
@@ -25,11 +25,11 @@ ThemeData buildAppTheme() {
       );
 
   return base.copyWith(
-    scaffoldBackgroundColor: AppColors.canvas,
+    scaffoldBackgroundColor: AppColors.page,
     textTheme: _interTextTheme(base.textTheme),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.green,
+        backgroundColor: AppColors.primary,
         foregroundColor: AppColors.white,
         minimumSize: const Size.fromHeight(52),
         elevation: 0,
@@ -41,7 +41,7 @@ ThemeData buildAppTheme() {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: AppColors.green,
+        foregroundColor: AppColors.primary,
         textStyle: GoogleFonts.inter(fontWeight: FontWeight.w700),
       ),
     ),
@@ -49,11 +49,11 @@ ThemeData buildAppTheme() {
       filled: true,
       fillColor: AppColors.white,
       contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
-      border: border(AppColors.inputBorder),
-      enabledBorder: border(AppColors.inputBorder),
-      focusedBorder: border(AppColors.green),
+      border: border(AppColors.border),
+      enabledBorder: border(AppColors.border),
+      focusedBorder: border(AppColors.primary),
     ),
-    dividerTheme: const DividerThemeData(color: AppColors.line, space: 1, thickness: 1),
+    dividerTheme: const DividerThemeData(color: AppColors.border, space: 1, thickness: 1),
   );
 }
 

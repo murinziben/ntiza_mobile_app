@@ -1,20 +1,21 @@
 name: ntiza
-description: NTIZA — discover and book agricultural equipment and services.
+description: NTIZA — discover and book agricultural equipment and experts in Rwanda.
 publish_to: "none"
-version: 0.1.0+1
+version: 1.0.0+1
 
 environment:
   sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
   cloud_firestore: ^7.1.0
   firebase_auth: ^7.0.1
   firebase_core: ^5.1.0
-  flutter:
-    sdk: flutter
   flutter_riverpod: ^2.5.0
   go_router: ">=14.0.0"
   google_fonts: ">=6.0.0"
+  shared_preferences: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -23,3 +24,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/

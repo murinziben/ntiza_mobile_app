@@ -1,0 +1,30 @@
+flowchart TB
+    subgraph P["presentation (Flutter)"]
+        S["Screens & widgets<br/>ConsumerWidget"]
+        C["Controllers<br/>Riverpod Notifier"]
+        PR["Providers<br/>StreamProvider / StateProvider"]
+    end
+    subgraph D["domain (pure Dart)"]
+        U["Use cases<br/>validation + business rules"]
+        E["Entities<br/>Equipment, Booking, AppUser ..."]
+        RI["Repository interfaces"]
+    end
+    subgraph DA["data"]
+        R["Repository implementations"]
+        M["Mappers<br/>map to entity"]
+    end
+    FB[("Firebase<br/>Auth + Firestore")]
+    SP[("SharedPreferences")]
+
+    S -- "watch" --> PR
+    S -- "call actions" --> C
+    C --> U
+    PR --> RI
+    U --> RI
+    U --> E
+    R -. "implements" .-> RI
+    R --> M
+    R --> FB
+    R --> SP
+    FB -- "snapshots" --> R
+    R -- "streams" --> PR
