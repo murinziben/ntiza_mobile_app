@@ -3,6 +3,7 @@ analyzer:
     - build/**
     - android/**
     - ios/**
+    - team/**   # per-person copies used for pushing; the real code is in lib/ and test/
 include: package:flutter_lints/flutter.yaml
 
 linter:

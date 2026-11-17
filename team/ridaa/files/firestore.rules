@@ -1,0 +1,159 @@
+rules_version = '2';
+
+// NTIZA security rules.
+// Principles: deny by default; every document is readable only by the people
+// it belongs to; clients may change only the fields their role is meant to
+// change; roles and approval status can never be self-assigned.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---- helpers ---------------------------------------------------------
+    function signedIn() { return request.auth != null; }
+    function isSelf(uid) { return signedIn() && request.auth.uid == uid; }
+    function profile() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    function hasProfile() {
+      return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+    function isAdmin() { return hasProfile() && profile().role == 'admin'; }
+    function isActive(role) {
+      return hasProfile() && profile().role == role && profile().status == 'active';
+    }
+    function changed(keys) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys);
+    }
+
+    // ---- users/{uid} -----------------------------------------------------
+    // A person reads and edits only their own profile. Admins can list users,
+    // approve / suspend them and remove them.
+    match /users/{uid} {
+      allow get: if isSelf(uid) || isAdmin();
+      allow list: if isAdmin();
+
+      // Sign-up: farmers start active, partner roles start pending, and
+      // nobody can create an admin profile.
+      allow create: if isSelf(uid)
+        && request.resource.data.keys().hasOnly(
+             ['name', 'email', 'phone', 'district', 'role', 'status', 'createdAt'])
+        && request.resource.data.role in ['farmer', 'owner', 'expert', 'agent']
+        && request.resource.data.status ==
+             (request.resource.data.role == 'farmer' ? 'active' : 'pending');
+
+      allow update: if (isSelf(uid) && changed(['name', 'phone', 'district']))
+        || (isAdmin() && changed(['status']));
+      allow delete: if isAdmin() && !isSelf(uid);
+    }
+
+    // ---- equipment/{id} --------------------------------------------------
+    // The marketplace is public to browse; only approved owners publish.
+    match /equipment/{id} {
+      allow read: if true;
+      allow create: if isAdmin()
+        || (isActive('owner')
+            && request.resource.data.ownerId == request.auth.uid
+            && request.resource.data.price is int
+            && request.resource.data.price > 0
+            && request.resource.data.status in ['Available', 'Booked', 'Maintenance']);
+      // `jobs` may only grow by one (an owner completing a booking).
+      allow update: if isAdmin()
+        || (isActive('owner')
+            && resource.data.ownerId == request.auth.uid
+            && request.resource.data.ownerId == resource.data.ownerId
+            && request.resource.data.price is int
+            && request.resource.data.price > 0
+            && request.resource.data.jobs in [resource.data.jobs, resource.data.jobs + 1]);
+      allow delete: if isAdmin()
+        || (isActive('owner') && resource.data.ownerId == request.auth.uid);
+    }
+
+    // ---- experts/{uid} and courses/{id} ----------------------------------
+    match /experts/{uid} {
+      allow read: if true;
+      allow create, delete: if isAdmin();
+      // An approved expert edits only their own availability and fee.
+      allow update: if isAdmin()
+        || (isSelf(uid) && isActive('expert')
+            && changed(['fee', 'sessionMinutes', 'accepting', 'schedule']));
+    }
+    match /courses/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ---- bookings/{ref} --------------------------------------------------
+    // Visible to the farmer, the provider (owner / expert), the booking agent
+    // and admins. Status changes are limited to what each side may do.
+    match /bookings/{ref} {
+      allow read: if isSelf(resource.data.farmerId)
+        || isSelf(resource.data.providerId)
+        || isSelf(resource.data.agentId)
+        || isAdmin();
+
+      allow create: if signedIn()
+        && request.resource.data.status == 'Pending'
+        && request.resource.data.total is int
+        && request.resource.data.total > 0
+        && ((request.resource.data.farmerId == request.auth.uid
+             && request.resource.data.agentId == '')
+            || (isActive('agent')
+                && request.resource.data.agentId == request.auth.uid
+                && request.resource.data.farmerId == ''));
+
+      allow update: if isAdmin()
+        // The owner / expert accepts, declines or completes.
+        || (isSelf(resource.data.providerId)
+            && changed(['status'])
+            && request.resource.data.status in ['Confirmed', 'Cancelled', 'Completed'])
+        // The farmer pays, or cancels a request that is still pending.
+        || (isSelf(resource.data.farmerId)
+            && (changed(['paidVia'])
+                || (changed(['status'])
+                    && resource.data.status == 'Pending'
+                    && request.resource.data.status == 'Cancelled')));
+
+      // Only finished bookings can be removed from a farmer's history.
+      allow delete: if isAdmin()
+        || (isSelf(resource.data.farmerId)
+            && resource.data.status in ['Completed', 'Cancelled']);
+    }
+
+    // ---- notifications/{id} ----------------------------------------------
+    // A user reads, marks as read and deletes only their own notifications.
+    // Any signed-in user may create one for another user (booking events).
+    match /notifications/{id} {
+      allow read: if isSelf(resource.data.userId);
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(
+             ['userId', 'title', 'body', 'kind', 'unread', 'createdAt'])
+        && request.resource.data.unread == true;
+      allow update: if isSelf(resource.data.userId) && changed(['unread']);
+      allow delete: if isSelf(resource.data.userId);
+    }
+
+    // ---- disputes/{id} ---------------------------------------------------
+    match /disputes/{id} {
+      allow read: if isSelf(resource.data.raisedBy) || isAdmin();
+      allow create: if signedIn()
+        && request.resource.data.raisedBy == request.auth.uid
+        && request.resource.data.status == 'Open';
+      allow update, delete: if isAdmin();
+    }
+
+    // ---- agentClients/{id} -----------------------------------------------
+    // Private to the agent who created the record.
+    match /agentClients/{id} {
+      allow read, update, delete: if isSelf(resource.data.agentId);
+      allow create: if isActive('agent') && request.resource.data.agentId == request.auth.uid;
+    }
+
+    // ---- meta/counters ---------------------------------------------------
+    // Booking reference counter; it may only count upwards by one.
+    match /meta/counters {
+      allow read: if signedIn();
+      allow create: if signedIn();
+      allow update: if signedIn()
+        && request.resource.data.booking == resource.data.booking + 1;
+    }
+  }
+}

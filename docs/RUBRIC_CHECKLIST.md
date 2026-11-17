@@ -16,7 +16,7 @@ Tick every box before submitting. "Evidence" is where a grader (or you, in the v
 | **Widget & unit tests (5)** | `test/` — unit (validators, pricing, use cases, mappers, preferences, router rules), controller and widget tests | Run `flutter test --coverage`, screenshot the passing result and the coverage % for the report. Aim for ≥ 70 %. |
 | **SharedPreferences (5)** | text size, notifications, preferred district, remembered e-mail, onboarding seen — all restored on relaunch | Show it in the video: change → close the app → reopen. |
 | **Code quality & docs (5)** | README with setup + screenshots, doc comments, small reusable functions | Run `dart format .` and `flutter analyze` → screenshot "No issues found!". Add screenshots to `docs/screenshots`. |
-| **Git collaboration (10)** | See `docs/GIT_WORKFLOW.md` | Every member commits real work on a branch, merged by pull request with a review comment. Contribution table in the report must match `git shortlog -sn`. |
+| **Git collaboration (10)** | See `TEAM_GIT_GUIDE.md` | Every member commits real work on a branch, merged by pull request with a review comment. Contribution table in the report must match `git shortlog -sn`. |
 | **Report & academic integrity (20)** | `docs/report/` (Word + PDF draft) | Fill every yellow `[INSERT …]`, replace the AI disclosure with your true figures, write the contribution table, export from Word as `Group#_Final_Project_Submission.pdf` (Times New Roman 12 pt body, 14 pt headings). |
 | **Video demo (5)** | `docs/DEMO_SCRIPT.md` | Record the **release APK** on a **physical phone**, one continuous take, ≥ 1080p, 10–15 min, every member speaks, no introductions, no slides. |
 

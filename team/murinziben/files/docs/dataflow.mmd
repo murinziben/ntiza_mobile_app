@@ -1,0 +1,17 @@
+sequenceDiagram
+    actor Farmer
+    participant Screen as BookEquipmentScreen
+    participant Ctrl as BookingController
+    participant UC as BookingUseCases
+    participant Repo as BookingRepository (Firestore)
+    participant DB as Cloud Firestore
+    Farmer->>Screen: taps "Continue to Payment"
+    Screen->>Ctrl: bookEquipment(...)
+    Ctrl->>UC: bookEquipment(...)
+    UC->>UC: validate, price (BookingPricing)
+    UC->>Repo: create(NewBooking)
+    Repo->>DB: transaction: counter + booking document
+    UC->>Repo: notify owner
+    DB-->>Repo: snapshot (new booking)
+    Repo-->>Screen: StreamProvider rebuilds My Bookings instantly
+    Ctrl-->>Screen: ActionResult(ref) or error message

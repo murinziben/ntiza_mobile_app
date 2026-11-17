@@ -1,0 +1,8 @@
+{
+  "name": "ntiza-seed",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Loads test accounts and demo data into the NTIZA Firebase project",
+  "scripts": { "seed": "node seed.js" },
+  "dependencies": { "firebase-admin": "^12.7.0" }
+}

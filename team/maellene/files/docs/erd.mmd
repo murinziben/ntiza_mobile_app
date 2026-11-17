@@ -1,0 +1,112 @@
+erDiagram
+    USERS ||--o{ EQUIPMENT : "owns (ownerId)"
+    USERS ||--o| EXPERTS : "is (uid = id)"
+    USERS ||--o{ BOOKINGS : "books (farmerId)"
+    USERS ||--o{ BOOKINGS : "delivers (providerId)"
+    USERS ||--o{ BOOKINGS : "arranges (agentId)"
+    USERS ||--o{ NOTIFICATIONS : "receives (userId)"
+    USERS ||--o{ AGENT_CLIENTS : "manages (agentId)"
+    USERS ||--o{ DISPUTES : "raises (raisedBy)"
+    EQUIPMENT ||--o{ BOOKINGS : "hired in (itemId)"
+    EXPERTS ||--o{ BOOKINGS : "consulted in (itemId)"
+    BOOKINGS ||--o{ DISPUTES : "reported on (bookingRef)"
+
+    USERS {
+        string uid PK "= Firebase Auth uid"
+        string name
+        string email
+        string phone
+        string district
+        string role "farmer|owner|expert|agent|admin"
+        string status "active|pending|rejected|suspended"
+        timestamp createdAt
+    }
+    EQUIPMENT {
+        string id PK
+        string ownerId FK "USERS.uid"
+        string ownerName "display copy"
+        string name
+        string type
+        string district
+        string sector
+        int price "RWF"
+        string unit "hour|day|hectare"
+        string status "Available|Booked|Maintenance"
+        string about
+        array specs "k,v pairs"
+        int jobs "completed-job counter"
+        timestamp createdAt
+    }
+    EXPERTS {
+        string id PK "= USERS.uid"
+        string name "display copy"
+        string field
+        string category
+        double rating
+        int years
+        int fee "RWF per session"
+        int sessionMinutes
+        bool accepting
+        map schedule "weekday to hours"
+    }
+    COURSES {
+        string id PK
+        string title
+        string level
+        string topic
+        int lessons
+        string image
+    }
+    BOOKINGS {
+        string ref PK "NTZ-2041"
+        string kind "equipment|consult"
+        string farmerId FK "USERS.uid (or empty)"
+        string providerId FK "USERS.uid"
+        string agentId FK "USERS.uid (or empty)"
+        string itemId FK "EQUIPMENT.id or EXPERTS.id"
+        string title "snapshot"
+        string image "snapshot"
+        string status "Pending|Confirmed|Completed|Cancelled"
+        string dateLabel
+        string scheduled
+        string detail
+        string place
+        string location
+        int total "price at booking time"
+        string paidVia "MTN MoMo|Airtel Money"
+        string farmerName "snapshot"
+        string providerName "snapshot"
+        string clientName "agent client"
+        timestamp createdAt
+    }
+    NOTIFICATIONS {
+        string id PK
+        string userId FK "USERS.uid"
+        string title
+        string body
+        string kind
+        bool unread
+        timestamp createdAt
+    }
+    DISPUTES {
+        string id PK
+        string bookingRef FK "BOOKINGS.ref"
+        string raisedBy FK "USERS.uid"
+        string raisedByName
+        string reason
+        string status "Open|Resolved"
+        string resolution
+        timestamp createdAt
+    }
+    AGENT_CLIENTS {
+        string id PK
+        string agentId FK "USERS.uid"
+        string name
+        string phone
+        string district
+        timestamp createdAt
+    }
+    META_COUNTERS {
+        string id PK "counters"
+        int booking "last booking number"
+    }
