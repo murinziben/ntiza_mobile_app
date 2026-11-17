@@ -99,7 +99,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
               _Method(
                 selected: method == name,
                 title: name == 'MTN MoMo' ? 'MTN Mobile Money' : name,
-                sub: name == 'MTN MoMo' ? 'Pay with MoMo · 078 / 079' : 'Pay with Airtel · 072 / 073',
+                sub: name == 'MTN MoMo'
+                    ? 'Pay with MoMo · 078 / 079'
+                    : 'Pay with Airtel · 072 / 073',
                 logo: name == 'MTN MoMo' ? const _MtnLogo() : const _AirtelLogo(),
                 onTap: () => ref.read(_methodProvider.notifier).state = name,
               ),
@@ -115,8 +117,8 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
             const SizedBox(height: 16),
             Container(
               padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                  color: AppColors.blueBg, borderRadius: BorderRadius.circular(14)),
+              decoration:
+                  BoxDecoration(color: AppColors.blueBg, borderRadius: BorderRadius.circular(14)),
               child: const Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -183,8 +185,8 @@ class _MtnLogo extends StatelessWidget {
         width: 56,
         height: 56,
         alignment: Alignment.center,
-        decoration: BoxDecoration(
-            color: const Color(0xFFFFCC00), borderRadius: BorderRadius.circular(14)),
+        decoration:
+            BoxDecoration(color: const Color(0xFFFFCC00), borderRadius: BorderRadius.circular(14)),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
           decoration: BoxDecoration(
@@ -250,8 +252,8 @@ class _Method extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: selected ? AppColors.primary : Colors.white,
-                border: Border.all(
-                    color: selected ? AppColors.primary : AppColors.faint, width: 1.6),
+                border:
+                    Border.all(color: selected ? AppColors.primary : AppColors.faint, width: 1.6),
               ),
               child: selected ? const Icon(Icons.circle, size: 10, color: Colors.white) : null,
             ),

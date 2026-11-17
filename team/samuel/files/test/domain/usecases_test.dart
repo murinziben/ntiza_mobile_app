@@ -116,7 +116,8 @@ void main() {
 
     test('session flags: password accounts need verification, Google accounts do not', () {
       const pw = AuthSession(uid: 'a', email: 'a@b.rw', emailVerified: false, usesPassword: true);
-      const google = AuthSession(uid: 'b', email: 'b@b.rw', emailVerified: false, usesPassword: false);
+      const google =
+          AuthSession(uid: 'b', email: 'b@b.rw', emailVerified: false, usesPassword: false);
       expect(pw.needsVerification, isTrue);
       expect(google.needsVerification, isFalse);
     });
@@ -135,7 +136,8 @@ void main() {
     });
 
     test('scheduledLabel formats weekday, date and time', () {
-      expect(BookingUseCases.scheduledLabel(DateTime(2026, 11, 14), '08:00'), 'Sat, 14 Nov 2026 · 08:00');
+      expect(BookingUseCases.scheduledLabel(DateTime(2026, 11, 14), '08:00'),
+          'Sat, 14 Nov 2026 · 08:00');
     });
 
     test('bookEquipment prices the job, creates it and notifies the owner', () async {
@@ -192,9 +194,14 @@ void main() {
     });
 
     test('an agent books for a client and the farmer id stays empty', () async {
-      const agent = AppUser(uid: 'agent1', name: 'Agent A', role: Role.agent, status: UserStatus.active);
+      const agent =
+          AppUser(uid: 'agent1', name: 'Agent A', role: Role.agent, status: UserStatus.active);
       const client = AgentClient(
-          id: 'c1', agentId: 'agent1', name: 'Mukamana Aline', phone: '0781234567', district: 'Huye');
+          id: 'c1',
+          agentId: 'agent1',
+          name: 'Mukamana Aline',
+          phone: '0781234567',
+          district: 'Huye');
       await useCases.bookEquipment(
         equipment: sampleTractor,
         date: DateTime(2026, 11, 20),
@@ -212,7 +219,8 @@ void main() {
     });
 
     test('bookExpert charges the expert fee and refuses experts who are not accepting', () async {
-      const expert = Expert(id: 'ex1', name: 'Dr. Uwera', field: 'Crops', category: 'Crops', fee: 20000);
+      const expert =
+          Expert(id: 'ex1', name: 'Dr. Uwera', field: 'Crops', category: 'Crops', fee: 20000);
       final ref = await useCases.bookExpert(
         expert: expert,
         farmer: sampleFarmer,
@@ -257,8 +265,10 @@ void main() {
     });
 
     test('reportProblem needs a real reason and creates a dispute', () async {
-      expect(() => useCases.reportProblem(sampleBooking(), sampleFarmer, 'bad'), throwsA(isA<AppException>()));
-      await useCases.reportProblem(sampleBooking(), sampleFarmer, 'The operator arrived two hours late.');
+      expect(() => useCases.reportProblem(sampleBooking(), sampleFarmer, 'bad'),
+          throwsA(isA<AppException>()));
+      await useCases.reportProblem(
+          sampleBooking(), sampleFarmer, 'The operator arrived two hours late.');
       expect(admin.disputes.single.bookingRef, 'NTZ-2041');
       expect(admin.disputes.single.isOpen, isTrue);
     });
@@ -282,19 +292,21 @@ void main() {
     });
 
     test('validates name, price and district', () {
-      const noName = Equipment(
-          id: '', name: ' ', type: 'Pump', district: 'Huye', price: 8000, unit: 'hour');
+      const noName =
+          Equipment(id: '', name: ' ', type: 'Pump', district: 'Huye', price: 8000, unit: 'hour');
       expect(() => useCases.saveEquipment(noName, priceText: '8000'), throwsA(isA<AppException>()));
       expect(() => useCases.saveEquipment(noName.copyWith(name: 'Pump'), priceText: '0'),
           throwsA(isA<AppException>()));
-      expect(() => useCases.saveEquipment(noName.copyWith(name: 'Pump', district: ''), priceText: '5'),
+      expect(
+          () => useCases.saveEquipment(noName.copyWith(name: 'Pump', district: ''), priceText: '5'),
           throwsA(isA<AppException>()));
     });
 
     test('cannot delete equipment with an open booking', () async {
       final open = sampleBooking(status: BookingStatus.confirmed);
       expect(() => useCases.deleteEquipment(sampleTractor, [open]), throwsA(isA<AppException>()));
-      await useCases.deleteEquipment(sampleTractor, [sampleBooking(status: BookingStatus.completed)]);
+      await useCases
+          .deleteEquipment(sampleTractor, [sampleBooking(status: BookingStatus.completed)]);
       expect(catalog.deleted, ['eq1']);
     });
 
@@ -304,7 +316,8 @@ void main() {
       const expert = Expert(id: 'ex1', name: 'Dr', field: 'Crops', category: 'Crops');
       await useCases.saveAvailability(expert.copyWith(fee: 12000, sessionMinutes: 45));
       expect(catalog.experts.single.fee, 12000);
-      expect(() => useCases.saveAvailability(expert.copyWith(fee: 0)), throwsA(isA<AppException>()));
+      expect(
+          () => useCases.saveAvailability(expert.copyWith(fee: 0)), throwsA(isA<AppException>()));
       expect(() => useCases.saveAvailability(expert.copyWith(sessionMinutes: 0)),
           throwsA(isA<AppException>()));
     });
@@ -315,7 +328,11 @@ void main() {
       final repo = FakeAgentRepository();
       final useCases = AgentUseCases(repo);
       const client = AgentClient(
-          id: '', agentId: 'agent1', name: ' Mukamana Aline ', phone: '+250781234567', district: 'Huye');
+          id: '',
+          agentId: 'agent1',
+          name: ' Mukamana Aline ',
+          phone: '+250781234567',
+          district: 'Huye');
       await useCases.saveClient(client);
       expect(repo.added.single.name, 'Mukamana Aline');
       expect(repo.added.single.phone, '0781234567');
@@ -324,7 +341,8 @@ void main() {
       expect(repo.updated.single.id, 'c1');
       await useCases.deleteClient('c1');
       expect(repo.deleted, ['c1']);
-      expect(() => useCases.saveClient(client.copyWith(phone: '123')), throwsA(isA<AppException>()));
+      expect(
+          () => useCases.saveClient(client.copyWith(phone: '123')), throwsA(isA<AppException>()));
     });
   });
 
@@ -365,7 +383,8 @@ void main() {
     });
 
     test('Expert.fullSchedule covers every weekday', () {
-      const x = Expert(id: 'e', name: 'n', field: 'f', category: 'c', schedule: {'Monday': '08:00 – 12:00'});
+      const x = Expert(
+          id: 'e', name: 'n', field: 'f', category: 'c', schedule: {'Monday': '08:00 – 12:00'});
       expect(x.fullSchedule.length, 7);
       expect(x.fullSchedule['Tuesday'], '');
     });

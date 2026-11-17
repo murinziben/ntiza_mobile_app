@@ -22,10 +22,8 @@ class LogoMark extends StatelessWidget {
           borderRadius: BorderRadius.circular(size * 0.28),
         ),
         child: Text('N',
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w800,
-                fontSize: size * 0.5)),
+            style:
+                TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: size * 0.5)),
       );
 }
 
@@ -50,9 +48,7 @@ class LogoLockup extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       color: light ? Colors.white : AppColors.ink)),
               Text('Digital Agriculture Platform',
-                  style: TextStyle(
-                      fontSize: 11.5,
-                      color: light ? Colors.white : AppColors.muted)),
+                  style: TextStyle(fontSize: 11.5, color: light ? Colors.white : AppColors.muted)),
             ],
           ),
         ],
@@ -126,10 +122,7 @@ class AppCard extends StatelessWidget {
 
 class Pill extends StatelessWidget {
   const Pill(this.label,
-      {super.key,
-      this.bg = AppColors.green100,
-      this.fg = AppColors.primaryDark,
-      this.big = false});
+      {super.key, this.bg = AppColors.green100, this.fg = AppColors.primaryDark, this.big = false});
   final String label;
   final Color bg;
   final Color fg;
@@ -140,8 +133,7 @@ class Pill extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: big ? 14 : 11, vertical: big ? 7 : 5),
         decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(99)),
         child: Text(label,
-            style: TextStyle(
-                color: fg, fontSize: big ? 13 : 12, fontWeight: FontWeight.w600)),
+            style: TextStyle(color: fg, fontSize: big ? 13 : 12, fontWeight: FontWeight.w600)),
       );
 }
 
@@ -199,10 +191,7 @@ class IconTile extends StatelessWidget {
 
 class InitialsAvatar extends StatelessWidget {
   const InitialsAvatar(this.initials,
-      {super.key,
-      this.size = 52,
-      this.bg = AppColors.green100,
-      this.fg = AppColors.primaryDark});
+      {super.key, this.size = 52, this.bg = AppColors.green100, this.fg = AppColors.primaryDark});
   final String initials;
   final double size;
   final Color bg;
@@ -215,8 +204,7 @@ class InitialsAvatar extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(color: bg, shape: BoxShape.circle),
         child: Text(initials,
-            style: TextStyle(
-                color: fg, fontWeight: FontWeight.w700, fontSize: size * 0.3)),
+            style: TextStyle(color: fg, fontWeight: FontWeight.w700, fontSize: size * 0.3)),
       );
 }
 
@@ -279,10 +267,7 @@ class OutlineButtonX extends StatelessWidget {
 /// Small green-tinted action button ("Book", "Approve" …).
 class SoftButton extends StatelessWidget {
   const SoftButton(this.label,
-      {super.key,
-      this.onPressed,
-      this.bg = AppColors.green100,
-      this.fg = AppColors.primaryDark});
+      {super.key, this.onPressed, this.bg = AppColors.green100, this.fg = AppColors.primaryDark});
   final String label;
   final VoidCallback? onPressed;
   final Color bg;
@@ -301,8 +286,7 @@ class SoftButton extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(label,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: fg, fontWeight: FontWeight.w700, fontSize: 14.5)),
+                style: TextStyle(color: fg, fontWeight: FontWeight.w700, fontSize: 14.5)),
           ),
         ),
       );
@@ -336,8 +320,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
                   if (back)
                     _Circle(
                       icon: Icons.chevron_left,
-                      onTap: () =>
-                          context.canPop() ? context.pop() : context.go('/home'),
+                      onTap: () => context.canPop() ? context.pop() : context.go('/home'),
                     )
                   else
                     const SizedBox(width: 8),
@@ -421,16 +404,14 @@ class SectionHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(title,
-              style: const TextStyle(
-                  fontSize: 19, fontWeight: FontWeight.w700, color: AppColors.ink)),
+              style:
+                  const TextStyle(fontSize: 19, fontWeight: FontWeight.w700, color: AppColors.ink)),
           if (action != null)
             GestureDetector(
               onTap: onAction,
               child: Text(action!,
                   style: const TextStyle(
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primary)),
+                      fontSize: 14.5, fontWeight: FontWeight.w600, color: AppColors.primary)),
             ),
         ],
       );
@@ -550,8 +531,7 @@ class StatTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (icon != null) ...[Icon(icon, color: fg, size: 20), const SizedBox(height: 8)],
-            Text(value,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: fg)),
+            Text(value, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: fg)),
             const SizedBox(height: 2),
             Text(label, style: TextStyle(fontSize: 12.5, color: fg)),
           ],
@@ -561,8 +541,7 @@ class StatTile extends StatelessWidget {
 
 /// Labelled text field used by auth/forms.
 /// Whether a password field currently hides its text (keyed by field label).
-final _hidePasswordProvider =
-    StateProvider.autoDispose.family<bool, String>((ref, label) => true);
+final _hidePasswordProvider = StateProvider.autoDispose.family<bool, String>((ref, label) => true);
 
 /// A labelled text input with inline validation. Use inside a `Form` and call
 /// `formKey.currentState!.validate()` to show every error at once.
@@ -602,8 +581,8 @@ class LabeledField extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label,
-            style: const TextStyle(
-                fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.body)),
+            style:
+                const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.body)),
         const SizedBox(height: 8),
         TextFormField(
           controller: controller,

@@ -40,48 +40,48 @@ class RoleHeader extends ConsumerWidget {
     final title = this.title ?? 'Muraho, ${me?.firstName ?? ''} 👋';
     final subtitle = this.subtitle ?? '${me?.role.label ?? ''} · ${me?.district ?? ''}';
     return Row(
-        children: [
-          if (icon != null)
-            Container(
-              width: 54,
-              height: 54,
-              decoration: BoxDecoration(
-                  color: AppColors.ink, borderRadius: BorderRadius.circular(16)),
-              child: Icon(icon, color: Colors.white),
-            )
-          else
-            InitialsAvatar(initials, size: 54, bg: AppColors.primary, fg: Colors.white),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
-                Text(subtitle, style: const TextStyle(fontSize: 14, color: AppColors.muted)),
-              ],
-            ),
+      children: [
+        if (icon != null)
+          Container(
+            width: 54,
+            height: 54,
+            decoration:
+                BoxDecoration(color: AppColors.ink, borderRadius: BorderRadius.circular(16)),
+            child: Icon(icon, color: Colors.white),
+          )
+        else
+          InitialsAvatar(initials, size: 54, bg: AppColors.primary, fg: Colors.white),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
+              Text(subtitle, style: const TextStyle(fontSize: 14, color: AppColors.muted)),
+            ],
           ),
-          // The bell opens the notification list (it shows an unread dot).
-          // `search` is kept for source compatibility and no longer changes it.
-          InkResponse(
-            onTap: () => context.push('/notifications'),
-            radius: 28,
-            child: Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-                border: Border.all(color: AppColors.border),
-              ),
-              child: const Center(child: BellIcon()),
+        ),
+        // The bell opens the notification list (it shows an unread dot).
+        // `search` is kept for source compatibility and no longer changes it.
+        InkResponse(
+          onTap: () => context.push('/notifications'),
+          radius: 28,
+          child: Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              border: Border.all(color: AppColors.border),
             ),
+            child: const Center(child: BellIcon()),
           ),
-        ],
-      );
+        ),
+      ],
+    );
   }
 }
 
@@ -120,8 +120,7 @@ class StatGrid extends StatelessWidget {
               children: [
                 Expanded(child: _card(stats[i])),
                 const SizedBox(width: 14),
-                Expanded(
-                    child: i + 1 < stats.length ? _card(stats[i + 1]) : const SizedBox()),
+                Expanded(child: i + 1 < stats.length ? _card(stats[i + 1]) : const SizedBox()),
               ],
             ),
           ],
@@ -180,9 +179,8 @@ class BarCard extends StatelessWidget {
                           Container(
                             height: height * values[i] / maxV,
                             decoration: BoxDecoration(
-                              color: i == values.length - 1
-                                  ? AppColors.primary
-                                  : AppColors.green100,
+                              color:
+                                  i == values.length - 1 ? AppColors.primary : AppColors.green100,
                               borderRadius: BorderRadius.circular(6),
                             ),
                           ),
@@ -218,8 +216,8 @@ class BalanceCard extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         width: double.infinity,
         padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-            color: AppColors.primaryDark, borderRadius: BorderRadius.circular(22)),
+        decoration:
+            BoxDecoration(color: AppColors.primaryDark, borderRadius: BorderRadius.circular(22)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -287,11 +285,8 @@ class RequestCard extends StatelessWidget {
                           child: Text(l,
                               style: TextStyle(
                                   fontSize: 14,
-                                  fontWeight:
-                                      tag == l ? FontWeight.w600 : FontWeight.w400,
-                                  color: tag == l
-                                      ? AppColors.primaryDark
-                                      : AppColors.muted)),
+                                  fontWeight: tag == l ? FontWeight.w600 : FontWeight.w400,
+                                  color: tag == l ? AppColors.primaryDark : AppColors.muted)),
                         ),
                     ],
                   ),
@@ -484,12 +479,10 @@ class RoleProfileScreen extends ConsumerWidget {
               child: InitialsAvatar(initials, size: 84, bg: AppColors.primary, fg: Colors.white)),
           const SizedBox(height: 12),
           Center(
-              child: Text(name,
-                  style: const TextStyle(fontSize: 21, fontWeight: FontWeight.w800))),
+              child: Text(name, style: const TextStyle(fontSize: 21, fontWeight: FontWeight.w800))),
           const SizedBox(height: 4),
           Center(
-              child: Text(subtitle,
-                  style: const TextStyle(fontSize: 14, color: AppColors.muted))),
+              child: Text(subtitle, style: const TextStyle(fontSize: 14, color: AppColors.muted))),
           const SizedBox(height: 22),
           AppCard(
             padding: EdgeInsets.zero,
@@ -535,5 +528,4 @@ Widget sectionTitle(String t, {String? action, VoidCallback? onAction}) =>
     SectionHeader(t, action: action, onAction: onAction);
 
 /// Neutral tag chip ("Phone call", "Video call" …).
-Widget tagChip(String label) =>
-    Pill(label, big: true, bg: AppColors.neutral, fg: AppColors.body);
+Widget tagChip(String label) => Pill(label, big: true, bg: AppColors.neutral, fg: AppColors.body);

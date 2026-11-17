@@ -37,53 +37,53 @@ class WelcomeScreen extends ConsumerWidget {
                 child: ConstrainedBox(
                   constraints: BoxConstraints(minHeight: box.maxHeight),
                   child: Padding(
-              padding: const EdgeInsets.fromLTRB(24, 24, 24, 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const LogoLockup(light: true, size: 48),
-                  const SizedBox(height: 28),
-                  const Text('Connecting Farmers to Agricultural Equipment and Experts',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 32,
-                          height: 1.2,
-                          fontWeight: FontWeight.w700)),
-                  const SizedBox(height: 18),
-                  const Text(
-                      'Book tractors, harvesters and certified agri-experts, pay with Mobile Money and learn new skills — all in one app.',
-                      style: TextStyle(color: Colors.white, fontSize: 17, height: 1.45)),
-                  const SizedBox(height: 22),
-                  Row(children: [
-                    Container(
-                        width: 48,
-                        height: 10,
-                        decoration: BoxDecoration(
-                            color: const Color(0xFF22C55E),
-                            borderRadius: BorderRadius.circular(9))),
-                    for (var i = 0; i < 2; i++)
-                      Container(
-                          margin: const EdgeInsets.only(left: 8),
-                          width: 10,
-                          height: 10,
-                          decoration: const BoxDecoration(
-                              color: Color(0x80FFFFFF), shape: BoxShape.circle)),
-                  ]),
-                  const SizedBox(height: 28),
-                  PrimaryButton('Get Started',
-                      height: 52, onPressed: () => _leave(context, ref, login: false)),
-                  const SizedBox(height: 14),
-                  OutlineButtonX('I already have an account',
-                      height: 52, onPressed: () => _leave(context, ref, login: true)),
-                  const SizedBox(height: 18),
-                  const Center(
-                    child: Text('English · Kinyarwanda',
-                        style: TextStyle(color: Colors.white, fontSize: 14)),
+                    padding: const EdgeInsets.fromLTRB(24, 24, 24, 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const LogoLockup(light: true, size: 48),
+                        const SizedBox(height: 28),
+                        const Text('Connecting Farmers to Agricultural Equipment and Experts',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                height: 1.2,
+                                fontWeight: FontWeight.w700)),
+                        const SizedBox(height: 18),
+                        const Text(
+                            'Book tractors, harvesters and certified agri-experts, pay with Mobile Money and learn new skills — all in one app.',
+                            style: TextStyle(color: Colors.white, fontSize: 17, height: 1.45)),
+                        const SizedBox(height: 22),
+                        Row(children: [
+                          Container(
+                              width: 48,
+                              height: 10,
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFF22C55E),
+                                  borderRadius: BorderRadius.circular(9))),
+                          for (var i = 0; i < 2; i++)
+                            Container(
+                                margin: const EdgeInsets.only(left: 8),
+                                width: 10,
+                                height: 10,
+                                decoration: const BoxDecoration(
+                                    color: Color(0x80FFFFFF), shape: BoxShape.circle)),
+                        ]),
+                        const SizedBox(height: 28),
+                        PrimaryButton('Get Started',
+                            height: 52, onPressed: () => _leave(context, ref, login: false)),
+                        const SizedBox(height: 14),
+                        OutlineButtonX('I already have an account',
+                            height: 52, onPressed: () => _leave(context, ref, login: true)),
+                        const SizedBox(height: 18),
+                        const Center(
+                          child: Text('English · Kinyarwanda',
+                              style: TextStyle(color: Colors.white, fontSize: 14)),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
                 ),
               ),
             ),

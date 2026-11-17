@@ -21,16 +21,16 @@ class FirestoreBookingRepository implements BookingRepository {
       );
 
   @override
-  Stream<List<Booking>> watchForFarmer(String uid) => _watch(
-      _bookings.where('farmerId', isEqualTo: uid).orderBy('createdAt', descending: true));
+  Stream<List<Booking>> watchForFarmer(String uid) =>
+      _watch(_bookings.where('farmerId', isEqualTo: uid).orderBy('createdAt', descending: true));
 
   @override
-  Stream<List<Booking>> watchForProvider(String uid) => _watch(
-      _bookings.where('providerId', isEqualTo: uid).orderBy('createdAt', descending: true));
+  Stream<List<Booking>> watchForProvider(String uid) =>
+      _watch(_bookings.where('providerId', isEqualTo: uid).orderBy('createdAt', descending: true));
 
   @override
-  Stream<List<Booking>> watchForAgent(String uid) => _watch(
-      _bookings.where('agentId', isEqualTo: uid).orderBy('createdAt', descending: true));
+  Stream<List<Booking>> watchForAgent(String uid) =>
+      _watch(_bookings.where('agentId', isEqualTo: uid).orderBy('createdAt', descending: true));
 
   @override
   Stream<List<Booking>> watchAll() => _watch(_bookings.orderBy('createdAt', descending: true));

@@ -27,15 +27,22 @@ class BookingDetailScreen extends ConsumerWidget {
       if (cancelled)
         (_S.done, 'Booking cancelled', 'No further action needed')
       else ...[
-        (paid ? _S.done : _S.current, 'Payment received',
-            paid ? 'Paid via ${b.paidVia}' : 'Awaiting payment'),
-        (confirmed ? _S.done : (paid ? _S.current : _S.todo), '$who confirmed',
-            confirmed ? 'Confirmed by ${b.providerName}' : 'Pending'),
-        (completed ? _S.done : (confirmed ? _S.current : _S.todo),
-            b.expert ? 'Consultation scheduled' : 'Equipment on the way',
-            confirmed ? b.dateLabel : 'Pending'),
-        (completed ? _S.done : _S.todo, 'Service completed',
-            completed ? b.dateLabel : 'Pending'),
+        (
+          paid ? _S.done : _S.current,
+          'Payment received',
+          paid ? 'Paid via ${b.paidVia}' : 'Awaiting payment'
+        ),
+        (
+          confirmed ? _S.done : (paid ? _S.current : _S.todo),
+          '$who confirmed',
+          confirmed ? 'Confirmed by ${b.providerName}' : 'Pending'
+        ),
+        (
+          completed ? _S.done : (confirmed ? _S.current : _S.todo),
+          b.expert ? 'Consultation scheduled' : 'Equipment on the way',
+          confirmed ? b.dateLabel : 'Pending'
+        ),
+        (completed ? _S.done : _S.todo, 'Service completed', completed ? b.dateLabel : 'Pending'),
       ],
     ];
   }
@@ -65,7 +72,8 @@ class BookingDetailScreen extends ConsumerWidget {
         body: 'The ${b.expert ? 'expert' : 'owner'} will be told you cancelled.',
         action: 'Cancel booking');
     if (!ok || !context.mounted) return;
-    final r = await ref.read(bookingControllerProvider.notifier).updateStatus(b, BookingStatus.cancelled);
+    final r =
+        await ref.read(bookingControllerProvider.notifier).updateStatus(b, BookingStatus.cancelled);
     if (!context.mounted) return;
     showToast(context, r.ok ? 'Booking cancelled.' : r.error!);
   }
@@ -138,8 +146,7 @@ class BookingDetailScreen extends ConsumerWidget {
                         children: [
                           Expanded(
                             child: Text(b.title,
-                                style: const TextStyle(
-                                    fontSize: 21, fontWeight: FontWeight.w800)),
+                                style: const TextStyle(fontSize: 21, fontWeight: FontWeight.w800)),
                           ),
                           const SizedBox(width: 8),
                           StatusChip(b.status),

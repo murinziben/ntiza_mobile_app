@@ -10,7 +10,8 @@ import '../../widgets/ui.dart';
 class VerifyEmailScreen extends ConsumerWidget {
   const VerifyEmailScreen({super.key});
 
-  Future<void> _run(BuildContext context, Future<ActionResult<void>> action, String okMessage) async {
+  Future<void> _run(
+      BuildContext context, Future<ActionResult<void>> action, String okMessage) async {
     final result = await action;
     if (context.mounted) showToast(context, result.ok ? okMessage : result.error!);
   }

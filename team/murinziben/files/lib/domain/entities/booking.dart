@@ -77,8 +77,7 @@ class Booking {
 
   bool get expert => kind == BookingKind.consult;
   bool get isPaid => paidVia != null && paidVia!.isNotEmpty;
-  bool get earlier =>
-      status == BookingStatus.completed || status == BookingStatus.cancelled;
+  bool get earlier => status == BookingStatus.completed || status == BookingStatus.cancelled;
 
   /// The name shown to the provider: the farmer, or the agent's client.
   String get customerName => farmerName.isNotEmpty ? farmerName : clientName;

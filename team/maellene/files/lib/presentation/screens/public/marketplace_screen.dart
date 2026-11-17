@@ -72,9 +72,7 @@ class MarketplaceScreen extends ConsumerWidget {
                     padding: const EdgeInsets.only(bottom: 12),
                     child: Text('${items.length} machines found',
                         style: const TextStyle(
-                            fontSize: 14.5,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.muted)),
+                            fontSize: 14.5, fontWeight: FontWeight.w500, color: AppColors.muted)),
                   ),
                   if (items.isEmpty) const EmptyNote('No equipment matches your filters.'),
                   for (final e in items) ...[

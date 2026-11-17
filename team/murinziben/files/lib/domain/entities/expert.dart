@@ -33,8 +33,7 @@ class Expert {
   final Map<String, String> schedule;
 
   /// The schedule for every weekday, filling gaps with "unavailable".
-  Map<String, String> get fullSchedule =>
-      {for (final d in weekdayNames) d: schedule[d] ?? ''};
+  Map<String, String> get fullSchedule => {for (final d in weekdayNames) d: schedule[d] ?? ''};
 
   Expert copyWith({
     int? fee,

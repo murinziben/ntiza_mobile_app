@@ -61,8 +61,7 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 22, 16, 28),
           children: [
-            const Text('Almost there',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
+            const Text('Almost there', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
             const SizedBox(height: 8),
             const Text('Tell us how you will use NTIZA and how to reach you.',
                 style: TextStyle(fontSize: 16, height: 1.4, color: AppColors.muted)),
@@ -103,7 +102,8 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
                   style: TextStyle(fontSize: 13.5, color: AppColors.muted)),
             ],
             const SizedBox(height: 22),
-            PrimaryButton(busy ? 'Saving…' : 'Continue', height: 54, onPressed: busy ? null : _save),
+            PrimaryButton(busy ? 'Saving…' : 'Continue',
+                height: 54, onPressed: busy ? null : _save),
             const SizedBox(height: 8),
             TextButton(
               onPressed: busy ? null : () => ref.read(authControllerProvider.notifier).signOut(),

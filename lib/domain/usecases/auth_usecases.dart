@@ -61,9 +61,8 @@ class AuthUseCases {
     required String phone,
     required String district,
   }) async {
-    final error = Validators.fullName(name) ??
-        Validators.phone(phone) ??
-        Validators.district(district);
+    final error =
+        Validators.fullName(name) ?? Validators.phone(phone) ?? Validators.district(district);
     if (error != null) throw AppException(error);
     final profile = AppUser(
       uid: session.uid,
@@ -86,15 +85,13 @@ class AuthUseCases {
 
   Future<void> updateProfile(String uid,
       {required String name, required String phone, required String district}) async {
-    final error = Validators.fullName(name) ??
-        Validators.phone(phone) ??
-        Validators.district(district);
+    final error =
+        Validators.fullName(name) ?? Validators.phone(phone) ?? Validators.district(district);
     if (error != null) throw AppException(error);
     await _auth.updateProfile(uid,
         name: name.trim(), phone: normalizePhone(phone), district: district);
   }
 
   /// Partner roles start `pending`, everyone else `active`.
-  static String statusFor(Role role) =>
-      role.needsApproval ? UserStatus.pending : UserStatus.active;
+  static String statusFor(Role role) => role.needsApproval ? UserStatus.pending : UserStatus.active;
 }

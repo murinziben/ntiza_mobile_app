@@ -4,7 +4,7 @@
 |---|---|
 | **Your part** | Foundation: entities, repository interfaces, Firestore mappers, Riverpod providers, router, theme, shared widgets, app entry point, Figma designs, README |
 | **Your branch** | `murinziben` |
-| **Your files** | 76 files, all inside the **`files/`** folder next to this guide |
+| **Your files** | 77 files, all inside the **`files/`** folder next to this guide |
 | **Push into** | the **team repo**: <https://github.com/murinziben/ntiza_mobile_application> |
 
 **Rules:** only ever push to **your** branch, `murinziben`. Never push to `main` or to anyone else's branch.
@@ -23,6 +23,7 @@ For example, `files/lib/...` becomes `lib/...`.
 
 ```
 README.md
+analysis_options.yaml
 design/mobile/admin/AD1 Admin Overview.png
 design/mobile/admin/AD2 Partner Applications.png
 design/mobile/admin/AD3 Users.png
@@ -206,8 +207,8 @@ git commit -m "Add Figma designs and architecture diagrams"
 ```
 
 ```bash
-git add README.md
-git commit -m "Update README with features, setup and architecture"
+git add README.md analysis_options.yaml
+git commit -m "Update README and set formatter line width to 100"
 ```
 
 ### 8. Push your branch

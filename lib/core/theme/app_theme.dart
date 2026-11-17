@@ -60,9 +60,8 @@ ThemeData buildAppTheme() {
 /// Applies Inter to every text style using only TextStyle APIs, so it works
 /// regardless of which google_fonts / Flutter SDK versions are installed.
 TextTheme _interTextTheme(TextTheme t) {
-  TextStyle? inter(TextStyle? s) => s == null
-      ? null
-      : GoogleFonts.inter(textStyle: s.copyWith(color: AppColors.ink));
+  TextStyle? inter(TextStyle? s) =>
+      s == null ? null : GoogleFonts.inter(textStyle: s.copyWith(color: AppColors.ink));
 
   return t.copyWith(
     displayLarge: inter(t.displayLarge),

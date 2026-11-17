@@ -11,7 +11,7 @@ The full NTIZA app, with the **contributor who pushes each file** written beside
 
 | Push order | Contributor | Branch | Part of the app | Files | Folder & guide |
 |---|---|---|---|---|---|
-| 1 | **murinziben** (leader) | `murinziben` | Foundation: entities, repository interfaces, Firestore mappers, providers, router, theme, shared widgets, Figma designs | 76 | [team/murinziben/](team/murinziben/HOW_TO_PUSH.md) |
+| 1 | **murinziben** (leader) | `murinziben` | Foundation: entities, repository interfaces, Firestore mappers, providers, router, theme, shared widgets, Figma designs | 77 | [team/murinziben/](team/murinziben/HOW_TO_PUSH.md) |
 | 2 | **ISHAMI Irené** | `ishami` | Authentication, settings (SharedPreferences), edit profile, notifications | 20 | [team/ishami/](team/ishami/HOW_TO_PUSH.md) |
 | 2 | **Kabera Nshuti Samuel** | `samuel` | Farmer: book equipment or an expert, pricing, payment, my bookings | 16 | [team/samuel/](team/samuel/HOW_TO_PUSH.md) |
 | 2 | **Maellene** | `maellene` | Public screens (home, marketplace, experts, training), equipment owner, ERD | 19 | [team/maellene/](team/maellene/HOW_TO_PUSH.md) |
@@ -24,8 +24,8 @@ murinziben pushes first. The other four push after that branch is merged into `m
 
 | Contributor | Folders and files |
 |---|---|
-| **on main** (already pushed) | `android/`<br>`assets/`<br>`ios/`<br>`.gitignore`<br>`.metadata`<br>`analysis_options.yaml`<br>`pubspec.lock`<br>`pubspec.yaml` |
-| **murinziben** | `design/`<br>`docs/architecture.mmd`, `docs/architecture.png`<br>`docs/dataflow.mmd`, `docs/dataflow.png`<br>`docs/screenshots/`<br>`lib/app.dart`<br>`lib/core/`<br>`lib/data/mappers/`<br>`lib/data/repositories/firebase_errors.dart`<br>`lib/domain/constants.dart`<br>`lib/domain/entities/`<br>`lib/domain/repositories/`<br>`lib/firebase_options.dart`<br>`lib/main.dart`<br>`lib/presentation/controllers/action_notifier.dart`<br>`lib/presentation/providers/`<br>`lib/presentation/widgets/`<br>`test/core/`<br>`test/helpers/`<br>`README.md` |
+| **on main** (already pushed) | `android/`<br>`assets/`<br>`ios/`<br>`.gitignore`<br>`.metadata`<br>`pubspec.lock`<br>`pubspec.yaml` |
+| **murinziben** | `design/`<br>`docs/architecture.mmd`, `docs/architecture.png`<br>`docs/dataflow.mmd`, `docs/dataflow.png`<br>`docs/screenshots/`<br>`lib/app.dart`<br>`lib/core/`<br>`lib/data/mappers/`<br>`lib/data/repositories/firebase_errors.dart`<br>`lib/domain/constants.dart`<br>`lib/domain/entities/`<br>`lib/domain/repositories/`<br>`lib/firebase_options.dart`<br>`lib/main.dart`<br>`lib/presentation/controllers/action_notifier.dart`<br>`lib/presentation/providers/`<br>`lib/presentation/widgets/`<br>`test/core/`<br>`test/helpers/`<br>`analysis_options.yaml` (updated)<br>`README.md` |
 | **Irené** | `lib/data/repositories/firebase_auth_repository.dart`<br>`lib/data/repositories/firestore_notification_repository.dart`<br>`lib/data/repositories/prefs_settings_repository.dart`<br>`lib/domain/usecases/auth_usecases.dart`<br>`lib/domain/validators.dart`<br>`lib/presentation/controllers/auth_controller.dart`<br>`lib/presentation/controllers/settings_controller.dart`<br>`lib/presentation/screens/auth/`<br>`lib/presentation/screens/common/edit_profile_screen.dart`<br>`lib/presentation/screens/common/notifications_screen.dart`<br>`lib/presentation/screens/common/settings_screen.dart`<br>`test/data/settings_repository_test.dart`<br>`test/domain/validators_test.dart`<br>`test/presentation/widgets_test.dart` |
 | **Samuel** | `lib/data/repositories/firestore_booking_repository.dart`<br>`lib/domain/usecases/booking_usecases.dart`<br>`lib/domain/usecases/pricing.dart`<br>`lib/presentation/controllers/booking_controller.dart`<br>`lib/presentation/screens/farmer/`<br>`test/domain/pricing_test.dart`<br>`test/domain/usecases_test.dart` |
 | **Maellene** | `docs/ERD.md`, `docs/erd.mmd`, `docs/erd.png`<br>`lib/data/repositories/firestore_catalog_repository.dart`<br>`lib/data/sample_data.dart`<br>`lib/domain/usecases/catalog_usecases.dart`<br>`lib/presentation/controllers/catalog_controller.dart`<br>`lib/presentation/screens/common/role_widgets.dart`<br>`lib/presentation/screens/owner/`<br>`lib/presentation/screens/public/`<br>`test/data/mappers_test.dart` |
@@ -194,7 +194,7 @@ ntiza_mobile_application/
 │   └── seed.js ............................................ Ridaa
 ├── .gitignore ............................................. on main
 ├── .metadata .............................................. on main
-├── analysis_options.yaml .................................. on main
+├── analysis_options.yaml .................................. murinziben (updates it)
 ├── firebase.json .......................................... Ridaa
 ├── firestore.indexes.json ................................. Ridaa
 ├── firestore.rules ........................................ Ridaa

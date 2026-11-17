@@ -108,12 +108,12 @@ class AdminOverview extends ConsumerWidget {
             StatGrid([
               StatSpec('${users.length}', 'Total Users', Icons.groups_2_outlined,
                   AppColors.green100, AppColors.primaryDark),
-              StatSpec('${pendingApps.length}', 'Pending Applications',
-                  Icons.description_outlined, AppColors.amberBg, AppColors.amberText),
+              StatSpec('${pendingApps.length}', 'Pending Applications', Icons.description_outlined,
+                  AppColors.amberBg, AppColors.amberText),
               StatSpec('${bookings.length}', 'Total Bookings', Icons.calendar_today_outlined,
                   AppColors.blueBg, AppColors.blue),
-              StatSpec('$openDisputes', 'Open Disputes', Icons.flag_outlined,
-                  AppColors.purpleBg, AppColors.purple),
+              StatSpec('$openDisputes', 'Open Disputes', Icons.flag_outlined, AppColors.purpleBg,
+                  AppColors.purple),
             ]),
             const SizedBox(height: 16),
             BarCard(
@@ -132,9 +132,7 @@ class AdminOverview extends ConsumerWidget {
                 initials: initialsOf(a.name),
                 name: a.name,
                 accent: '${a.role.label} · ${a.district}',
-                meta: a.createdAt == null
-                    ? 'Applied recently'
-                    : 'Applied ${timeAgo(a.createdAt!)}',
+                meta: a.createdAt == null ? 'Applied recently' : 'Applied ${timeAgo(a.createdAt!)}',
                 action: 'Review',
                 onAction: () => context.go('/admin/applications'),
               ),
@@ -198,9 +196,8 @@ class AdminApplicationsScreen extends ConsumerWidget {
 
   Future<void> _decide(BuildContext context, WidgetRef ref, AppUser a,
       {required bool approve}) async {
-    final result = await ref
-        .read(adminControllerProvider.notifier)
-        .decideApplication(a, approve: approve);
+    final result =
+        await ref.read(adminControllerProvider.notifier).decideApplication(a, approve: approve);
     if (!context.mounted) return;
     showToast(context,
         result.ok ? (approve ? '${a.name} approved.' : '${a.name} rejected.') : result.error!);
@@ -265,8 +262,8 @@ class AdminApplicationsScreen extends ConsumerWidget {
                                           fontWeight: FontWeight.w600,
                                           color: AppColors.primaryDark)),
                                   Text(a.phone,
-                                      style: const TextStyle(
-                                          fontSize: 13.5, color: AppColors.muted)),
+                                      style:
+                                          const TextStyle(fontSize: 13.5, color: AppColors.muted)),
                                   if (a.email.isNotEmpty)
                                     Text(a.email,
                                         overflow: TextOverflow.ellipsis,
@@ -284,14 +281,16 @@ class AdminApplicationsScreen extends ConsumerWidget {
                               Expanded(
                                   child: OutlineButtonX('Reject',
                                       height: 48,
-                                      onPressed:
-                                          busy ? null : () => _decide(context, ref, a, approve: false))),
+                                      onPressed: busy
+                                          ? null
+                                          : () => _decide(context, ref, a, approve: false))),
                               const SizedBox(width: 12),
                               Expanded(
                                   child: PrimaryButton('Approve',
                                       height: 48,
-                                      onPressed:
-                                          busy ? null : () => _decide(context, ref, a, approve: true))),
+                                      onPressed: busy
+                                          ? null
+                                          : () => _decide(context, ref, a, approve: true))),
                             ],
                           ),
                         ],
@@ -437,8 +436,8 @@ class AdminDisputesScreen extends ConsumerWidget {
   }
 
   Future<void> _delete(BuildContext context, WidgetRef ref, Dispute d) async {
-    final ok = await _confirm(context, 'Delete dispute?',
-        'The record for ${d.bookingRef} will be removed.', 'Delete');
+    final ok = await _confirm(
+        context, 'Delete dispute?', 'The record for ${d.bookingRef} will be removed.', 'Delete');
     if (!ok || !context.mounted) return;
     final result = await ref.read(adminControllerProvider.notifier).deleteDispute(d.id);
     if (!context.mounted) return;
@@ -488,8 +487,8 @@ class AdminDisputesScreen extends ConsumerWidget {
                                       style: const TextStyle(
                                           fontSize: 17.5, fontWeight: FontWeight.w700)),
                                   Text('Reported by ${d.raisedByName}',
-                                      style: const TextStyle(
-                                          fontSize: 13.5, color: AppColors.muted)),
+                                      style:
+                                          const TextStyle(fontSize: 13.5, color: AppColors.muted)),
                                 ],
                               ),
                             ),
@@ -501,8 +500,7 @@ class AdminDisputesScreen extends ConsumerWidget {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        Text(d.reason,
-                            style: const TextStyle(fontSize: 14, color: AppColors.body)),
+                        Text(d.reason, style: const TextStyle(fontSize: 14, color: AppColors.body)),
                         if (!d.isOpen && d.resolution.isNotEmpty) ...[
                           const SizedBox(height: 8),
                           Text('Resolution: ${d.resolution}',
@@ -594,11 +592,8 @@ class AdminMoreScreen extends ConsumerWidget {
   const AdminMoreScreen({super.key});
 
   Future<void> _seed(BuildContext context, WidgetRef ref) async {
-    final ok = await _confirm(
-        context,
-        'Load demo data?',
-        'Adds sample equipment, experts and courses. Existing demo items are overwritten.',
-        'Load',
+    final ok = await _confirm(context, 'Load demo data?',
+        'Adds sample equipment, experts and courses. Existing demo items are overwritten.', 'Load',
         destructive: false);
     if (!ok || !context.mounted) return;
     final result = await ref.read(adminControllerProvider.notifier).seedDemoData();
@@ -657,8 +652,8 @@ class AdminMoreScreen extends ConsumerWidget {
                                       style: const TextStyle(
                                           fontSize: 16.5, fontWeight: FontWeight.w700)),
                                   Text(r.$3,
-                                      style: const TextStyle(
-                                          fontSize: 13.5, color: AppColors.muted)),
+                                      style:
+                                          const TextStyle(fontSize: 13.5, color: AppColors.muted)),
                                 ],
                               ),
                             ),
@@ -679,7 +674,7 @@ class AdminMoreScreen extends ConsumerWidget {
             onTap: () => ref.read(authControllerProvider.notifier).signOut(),
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 32),
-              child: Row(
+              child: const Row(
                 children: [
                   Icon(Icons.logout, color: AppColors.danger),
                   SizedBox(width: 12),

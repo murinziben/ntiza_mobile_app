@@ -38,11 +38,12 @@ class GuestAccountScreen extends StatelessWidget {
               onTap: () => context.push('/settings'),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 56),
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
                     children: [
-                      IconTile(Icons.settings_outlined, bg: AppColors.green50, size: 40, radius: 12),
+                      IconTile(Icons.settings_outlined,
+                          bg: AppColors.green50, size: 40, radius: 12),
                       SizedBox(width: 14),
                       Expanded(
                         child: Text('Settings',

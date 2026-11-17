@@ -40,10 +40,20 @@ void main() {
   group('BookingStats', () {
     final now = DateTime(2026, 11, 15);
     final list = [
-      sampleBooking(ref: 'A', status: BookingStatus.completed, total: 100000, createdAt: DateTime(2026, 11, 2)),
-      sampleBooking(ref: 'B', status: BookingStatus.completed, total: 50000, createdAt: DateTime(2026, 10, 20)),
-      sampleBooking(ref: 'C', status: BookingStatus.pending, total: 70000, createdAt: DateTime(2026, 11, 3)),
-      sampleBooking(ref: 'D', status: BookingStatus.completed, total: 30000, createdAt: DateTime(2025, 1, 3)),
+      sampleBooking(
+          ref: 'A',
+          status: BookingStatus.completed,
+          total: 100000,
+          createdAt: DateTime(2026, 11, 2)),
+      sampleBooking(
+          ref: 'B',
+          status: BookingStatus.completed,
+          total: 50000,
+          createdAt: DateTime(2026, 10, 20)),
+      sampleBooking(
+          ref: 'C', status: BookingStatus.pending, total: 70000, createdAt: DateTime(2026, 11, 3)),
+      sampleBooking(
+          ref: 'D', status: BookingStatus.completed, total: 30000, createdAt: DateTime(2025, 1, 3)),
     ];
 
     test('counts by status', () {

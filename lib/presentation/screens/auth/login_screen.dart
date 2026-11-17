@@ -135,15 +135,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               PrimaryButton(busy ? 'Please wait…' : 'Log In',
                   height: 54, onPressed: busy ? null : _login),
               const SizedBox(height: 14),
-              OutlineButtonX('Continue with Google',
-                  height: 54, onPressed: busy ? null : _google),
+              OutlineButtonX('Continue with Google', height: 54, onPressed: busy ? null : _google),
               const SizedBox(height: 18),
               const Row(children: [
                 Expanded(child: Divider()),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: Text('New to NTIZA?',
-                      style: TextStyle(fontSize: 14, color: AppColors.faint)),
+                  child:
+                      Text('New to NTIZA?', style: TextStyle(fontSize: 14, color: AppColors.faint)),
                 ),
                 Expanded(child: Divider()),
               ]),

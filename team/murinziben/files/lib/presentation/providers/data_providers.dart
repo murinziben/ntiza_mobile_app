@@ -20,8 +20,7 @@ final sessionProvider = StreamProvider<AuthSession?>(
   (ref) => ref.watch(authRepositoryProvider).watchSession(),
 );
 
-final currentUidProvider =
-    Provider<String?>((ref) => ref.watch(sessionProvider).valueOrNull?.uid);
+final currentUidProvider = Provider<String?>((ref) => ref.watch(sessionProvider).valueOrNull?.uid);
 
 final signedInProvider = Provider<bool>((ref) => ref.watch(currentUidProvider) != null);
 
@@ -42,7 +41,10 @@ final equipmentProvider = StreamProvider<List<Equipment>>(
 final myEquipmentProvider = Provider<List<Equipment>>((ref) {
   final uid = ref.watch(currentUidProvider);
   final all = ref.watch(equipmentProvider).valueOrNull ?? const <Equipment>[];
-  return [for (final e in all) if (e.ownerId == uid) e];
+  return [
+    for (final e in all)
+      if (e.ownerId == uid) e
+  ];
 });
 
 final equipmentByIdProvider = Provider.family<Equipment?, String>((ref, id) {

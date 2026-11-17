@@ -84,7 +84,9 @@ Map<String, dynamic> equipmentToMap(Equipment e) => {
       'unit': e.unit,
       'status': e.status,
       'about': e.about,
-      'specs': [for (final s in e.specs) {'k': s.key, 'v': s.value}],
+      'specs': [
+        for (final s in e.specs) {'k': s.key, 'v': s.value}
+      ],
     };
 
 Map<String, dynamic> equipmentCreateMap(Equipment e) => {

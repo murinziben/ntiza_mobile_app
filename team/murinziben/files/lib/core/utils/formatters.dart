@@ -11,10 +11,7 @@ String rwf(num value) {
 
 /// Up to two initials for an avatar, ignoring honorifics such as `Dr.`.
 String initialsOf(String name) {
-  final parts = name
-      .split(RegExp(r'\s+'))
-      .where((p) => p.isNotEmpty && !p.endsWith('.'))
-      .toList();
+  final parts = name.split(RegExp(r'\s+')).where((p) => p.isNotEmpty && !p.endsWith('.')).toList();
   if (parts.isEmpty) return '?';
   if (parts.length == 1) return parts.first[0].toUpperCase();
   return (parts.first[0] + parts.last[0]).toUpperCase();
@@ -26,7 +23,13 @@ const List<String> shortMonths = [
 ];
 
 const List<String> weekdayNames = [
-  'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
 ];
 
 /// `now`, `5m`, `3h`, `Yesterday` or `12 Nov` — used by the notification list.
@@ -40,10 +43,8 @@ String timeAgo(DateTime time, {DateTime? now}) {
 }
 
 /// `05 Nov` style label.
-String dayMonth(DateTime t) =>
-    '${t.day.toString().padLeft(2, '0')} ${shortMonths[t.month - 1]}';
+String dayMonth(DateTime t) => '${t.day.toString().padLeft(2, '0')} ${shortMonths[t.month - 1]}';
 
 /// Compact money for dashboards: `412K`, `1.20M`.
-String compactRwf(num value) => value >= 1000000
-    ? '${(value / 1000000).toStringAsFixed(2)}M'
-    : '${(value / 1000).round()}K';
+String compactRwf(num value) =>
+    value >= 1000000 ? '${(value / 1000000).toStringAsFixed(2)}M' : '${(value / 1000).round()}K';

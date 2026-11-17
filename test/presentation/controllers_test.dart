@@ -134,7 +134,8 @@ void main() {
       final t = _setup();
       final c = t.container.read(authControllerProvider.notifier);
       expect((await c.updateProfile(name: '', phone: '0781234567', district: 'Huye')).ok, isFalse);
-      expect((await c.updateProfile(name: 'New Name', phone: '0781234567', district: 'Huye')).ok, isTrue);
+      expect((await c.updateProfile(name: 'New Name', phone: '0781234567', district: 'Huye')).ok,
+          isTrue);
     });
   });
 
@@ -201,7 +202,8 @@ void main() {
       expect((await c.delete(sampleBooking())).ok, isFalse); // still pending
       expect((await c.delete(sampleBooking(status: BookingStatus.cancelled))).ok, isTrue);
       expect((await c.reportProblem(sampleBooking(), 'short')).ok, isFalse);
-      expect((await c.reportProblem(sampleBooking(), 'The machine broke down mid-job.')).ok, isTrue);
+      expect(
+          (await c.reportProblem(sampleBooking(), 'The machine broke down mid-job.')).ok, isTrue);
     });
   });
 
@@ -269,9 +271,11 @@ void main() {
     });
 
     test('agent saves and deletes clients', () async {
-      final t = _setup(me: const AppUser(uid: 'agent1', name: 'Agent', role: Role.agent, status: 'active'));
+      final t = _setup(
+          me: const AppUser(uid: 'agent1', name: 'Agent', role: Role.agent, status: 'active'));
       final c = t.container.read(agentControllerProvider.notifier);
-      final saved = await c.saveClient(name: 'Mukamana Aline', phone: '0781234567', district: 'Huye');
+      final saved =
+          await c.saveClient(name: 'Mukamana Aline', phone: '0781234567', district: 'Huye');
       expect(saved.ok, isTrue);
       expect(t.agents.added.single.agentId, 'agent1');
       expect((await c.saveClient(name: 'X', phone: '1', district: '')).ok, isFalse);

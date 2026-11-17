@@ -78,7 +78,8 @@ void main() {
   });
 
   test('course round trip', () {
-    final c = courseFromMap('c1', {'title': 'T', 'level': 'Beginner', 'topic': 'x', 'lessons': 5, 'image': 'a.jpg'});
+    final c = courseFromMap(
+        'c1', {'title': 'T', 'level': 'Beginner', 'topic': 'x', 'lessons': 5, 'image': 'a.jpg'});
     expect(courseToMap(c)['lessons'], 5);
   });
 
@@ -100,7 +101,8 @@ void main() {
   });
 
   test('notification, dispute and client mappers', () {
-    final n = notificationFromMap('n1', {'userId': 'u', 'title': 'T', 'body': 'B', 'unread': false});
+    final n =
+        notificationFromMap('n1', {'userId': 'u', 'title': 'T', 'body': 'B', 'unread': false});
     expect(n.unread, isFalse);
     final d = disputeFromMap('d1', {'bookingRef': 'NTZ-1', 'reason': 'late', 'status': 'Resolved'});
     expect(d.isOpen, isFalse);

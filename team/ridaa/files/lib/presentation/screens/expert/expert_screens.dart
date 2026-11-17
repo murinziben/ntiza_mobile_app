@@ -23,13 +23,18 @@ const expertNav = [
 /// Consultation bookings assigned to the signed-in expert.
 final _consultsProvider = Provider.autoDispose<List<Booking>>((ref) {
   final all = ref.watch(providerBookingsProvider).valueOrNull ?? const <Booking>[];
-  return [for (final b in all) if (b.expert) b];
+  return [
+    for (final b in all)
+      if (b.expert) b
+  ];
 });
 
 final _consultFilterProvider = StateProvider.autoDispose<String>((ref) => 'Upcoming');
 
-List<Booking> _withStatus(List<Booking> list, String status) =>
-    [for (final b in list) if (b.status == status) b];
+List<Booking> _withStatus(List<Booking> list, String status) => [
+      for (final b in list)
+        if (b.status == status) b
+    ];
 
 // ---------------------------------------------------------------------------
 // Dashboard
@@ -67,10 +72,10 @@ class ExpertDashboard extends ConsumerWidget {
                   AppColors.green100, AppColors.primaryDark),
               StatSpec('${confirmed.length}', 'Upcoming', Icons.calendar_today_outlined,
                   AppColors.blueBg, AppColors.blue),
-              StatSpec(rating, 'Average Rating', Icons.star, AppColors.amberBg,
-                  AppColors.amberText),
-              StatSpec(compactRwf(earnings.net), 'Total Earnings (RWF)',
-                  Icons.payments_outlined, AppColors.purpleBg, AppColors.purple),
+              StatSpec(
+                  rating, 'Average Rating', Icons.star, AppColors.amberBg, AppColors.amberText),
+              StatSpec(compactRwf(earnings.net), 'Total Earnings (RWF)', Icons.payments_outlined,
+                  AppColors.purpleBg, AppColors.purple),
             ]),
             const SizedBox(height: 24),
             sectionTitle('New requests',
@@ -94,18 +99,17 @@ class _NextConsultCard extends ConsumerWidget {
     final b = booking;
     return Container(
       padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-          color: AppColors.primaryDark, borderRadius: BorderRadius.circular(22)),
+      decoration:
+          BoxDecoration(color: AppColors.primaryDark, borderRadius: BorderRadius.circular(22)),
       child: b == null
           ? const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Next consultation',
-                    style: TextStyle(color: Colors.white, fontSize: 14)),
+                Text('Next consultation', style: TextStyle(color: Colors.white, fontSize: 14)),
                 SizedBox(height: 10),
                 Text('No consultations scheduled',
-                    style: TextStyle(
-                        color: Colors.white, fontSize: 21, fontWeight: FontWeight.w700)),
+                    style:
+                        TextStyle(color: Colors.white, fontSize: 21, fontWeight: FontWeight.w700)),
                 SizedBox(height: 6),
                 Text('Accepted requests will show up here.',
                     style: TextStyle(color: Colors.white, fontSize: 14)),

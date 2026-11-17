@@ -46,8 +46,7 @@ class ExpertsScreen extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Pill('Pay per session',
-                            bg: AppColors.green100, fg: AppColors.primaryDark),
+                        Pill('Pay per session', bg: AppColors.green100, fg: AppColors.primaryDark),
                         SizedBox(height: 10),
                         Text('Not sure which expert you need?',
                             style: TextStyle(
@@ -66,8 +65,7 @@ class ExpertsScreen extends ConsumerWidget {
                     width: 64,
                     height: 64,
                     decoration: BoxDecoration(
-                        color: const Color(0x33FFFFFF),
-                        borderRadius: BorderRadius.circular(18)),
+                        color: const Color(0x33FFFFFF), borderRadius: BorderRadius.circular(18)),
                     child: const Icon(Icons.chat_bubble_outline, color: Colors.white, size: 30),
                   ),
                 ],

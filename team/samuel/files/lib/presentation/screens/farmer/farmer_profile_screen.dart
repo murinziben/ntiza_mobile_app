@@ -14,10 +14,12 @@ class FarmerProfileScreen extends ConsumerWidget {
         context: context,
         builder: (ctx) => AlertDialog(
           title: const Text('Help & support'),
-          content: const Text(
-              'Open a booking and tap "Report a problem" and an admin will review it. '
-              'For anything else, contact the NTIZA team through your district agent.'),
-          actions: [TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text('Close'))],
+          content:
+              const Text('Open a booking and tap "Report a problem" and an admin will review it. '
+                  'For anything else, contact the NTIZA team through your district agent.'),
+          actions: [
+            TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text('Close'))
+          ],
         ),
       );
 
@@ -69,8 +71,8 @@ class FarmerProfileScreen extends ConsumerWidget {
                           const SizedBox(width: 14),
                           Expanded(
                               child: Text(r.$2,
-                                  style: const TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.w600))),
+                                  style:
+                                      const TextStyle(fontSize: 16, fontWeight: FontWeight.w600))),
                           const Icon(Icons.chevron_right, color: AppColors.faint),
                         ],
                       ),
@@ -80,7 +82,8 @@ class FarmerProfileScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 16),
-          OutlineButtonX(busy ? 'Logging out…' : 'Log out', color: AppColors.danger,
+          OutlineButtonX(busy ? 'Logging out…' : 'Log out',
+              color: AppColors.danger,
               onPressed: busy
                   ? null
                   : () async {

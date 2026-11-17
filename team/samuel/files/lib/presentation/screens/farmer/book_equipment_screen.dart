@@ -37,8 +37,7 @@ class _BookEquipmentScreenState extends ConsumerState<BookEquipmentScreen> {
   void initState() {
     super.initState();
     // Pre-fill with the farmer's district; they can refine it.
-    _location = TextEditingController(
-        text: ref.read(profileProvider).valueOrNull?.district ?? '');
+    _location = TextEditingController(text: ref.read(profileProvider).valueOrNull?.district ?? '');
   }
 
   @override
@@ -52,8 +51,8 @@ class _BookEquipmentScreenState extends ConsumerState<BookEquipmentScreen> {
     final e = ref.read(equipmentByIdProvider(widget.equipmentId));
     if (e == null || !_formKey.currentState!.validate()) return;
     final durations = BookingPricing.durationOptions(e.unit);
-    final duration = ref.read(_durationProvider) ??
-        durations[BookingPricing.defaultDurationIndex(e.unit)];
+    final duration =
+        ref.read(_durationProvider) ?? durations[BookingPricing.defaultDurationIndex(e.unit)];
     final result = await ref.read(bookingControllerProvider.notifier).bookEquipment(
           equipment: e,
           date: ref.read(_dateProvider),
@@ -83,10 +82,10 @@ class _BookEquipmentScreenState extends ConsumerState<BookEquipmentScreen> {
     final busy = ref.watch(bookingControllerProvider).busy;
 
     final durations = BookingPricing.durationOptions(e.unit);
-    final duration = ref.watch(_durationProvider) ??
-        durations[BookingPricing.defaultDurationIndex(e.unit)];
-    final quote = BookingPricing.quote(
-        price: e.price, quantity: BookingPricing.quantityOf(duration));
+    final duration =
+        ref.watch(_durationProvider) ?? durations[BookingPricing.defaultDurationIndex(e.unit)];
+    final quote =
+        BookingPricing.quote(price: e.price, quantity: BookingPricing.quantityOf(duration));
 
     return Scaffold(
       appBar: const TopBar('Book Equipment'),
@@ -128,8 +127,7 @@ class _BookEquipmentScreenState extends ConsumerState<BookEquipmentScreen> {
               ),
             ),
             const SizedBox(height: 22),
-            const Text('Service date',
-                style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700)),
+            const Text('Service date', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700)),
             const SizedBox(height: 12),
             CalendarCard(
               month: month,
@@ -209,10 +207,7 @@ class _BookEquipmentScreenState extends ConsumerState<BookEquipmentScreen> {
 /// Price breakdown card shared by the booking screens.
 class _Summary extends StatelessWidget {
   const _Summary(
-      {required this.lineLabel,
-      required this.subtotal,
-      required this.fee,
-      required this.total});
+      {required this.lineLabel, required this.subtotal, required this.fee, required this.total});
   final String lineLabel;
   final int subtotal, fee, total;
 
@@ -239,8 +234,7 @@ class _Summary extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Total',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
+                const Text('Total', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
                 Text(rwf(total),
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.w800, color: AppColors.primaryDark)),

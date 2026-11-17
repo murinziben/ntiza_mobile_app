@@ -69,8 +69,7 @@ class EquipmentTile extends StatelessWidget {
                         child: Text(item.name,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                                fontSize: 17.5, fontWeight: FontWeight.w700)),
+                            style: const TextStyle(fontSize: 17.5, fontWeight: FontWeight.w700)),
                       ),
                       const SizedBox(width: 8),
                       StatusChip(item.statusLabel),
@@ -143,9 +142,7 @@ class ExpertCard extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(expert.field,
                       style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.primaryDark)),
+                          fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.primaryDark)),
                   const SizedBox(height: 3),
                   RatingLine(expert.rating, '${expert.years} years experience'),
                   const SizedBox(height: 3),

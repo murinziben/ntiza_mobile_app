@@ -68,8 +68,8 @@ class EquipmentDetailScreen extends ConsumerWidget {
                           children: [
                             Expanded(
                               child: Text(e.name,
-                                  style: const TextStyle(
-                                      fontSize: 24, fontWeight: FontWeight.w800)),
+                                  style:
+                                      const TextStyle(fontSize: 24, fontWeight: FontWeight.w800)),
                             ),
                             const SizedBox(width: 8),
                             StatusChip(e.statusLabel),
@@ -81,7 +81,9 @@ class EquipmentDetailScreen extends ConsumerWidget {
                           const SizedBox(width: 6),
                           Expanded(
                             child: Text(
-                                e.sector.isEmpty ? e.district : '${e.district} · ${e.sector} sector',
+                                e.sector.isEmpty
+                                    ? e.district
+                                    : '${e.district} · ${e.sector} sector',
                                 style: const TextStyle(fontSize: 16, color: AppColors.muted)),
                           ),
                         ]),
@@ -100,8 +102,8 @@ class EquipmentDetailScreen extends ConsumerWidget {
                             style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700)),
                         const SizedBox(height: 10),
                         Text(e.about.isEmpty ? 'No description provided.' : e.about,
-                            style: const TextStyle(
-                                fontSize: 16, height: 1.5, color: AppColors.body)),
+                            style:
+                                const TextStyle(fontSize: 16, height: 1.5, color: AppColors.body)),
                         if (!e.available) ...[
                           const SizedBox(height: 18),
                           _UnavailableNote(status: e.statusLabel),
@@ -168,8 +170,7 @@ class _OwnerCard extends StatelessWidget {
     final name = equipment.ownerName.isEmpty ? 'NTIZA partner' : equipment.ownerName;
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration:
-          BoxDecoration(color: AppColors.page, borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(color: AppColors.page, borderRadius: BorderRadius.circular(16)),
       child: Row(
         children: [
           InitialsAvatar(initialsOf(name), size: 54, bg: AppColors.primary, fg: Colors.white),
@@ -178,8 +179,7 @@ class _OwnerCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(name,
-                    style: const TextStyle(fontSize: 16.5, fontWeight: FontWeight.w700)),
+                Text(name, style: const TextStyle(fontSize: 16.5, fontWeight: FontWeight.w700)),
                 Text('Verified owner · ${equipment.jobs} jobs completed',
                     style: const TextStyle(fontSize: 13, color: AppColors.muted)),
               ],
@@ -209,8 +209,7 @@ class _SpecBox extends StatelessWidget {
           children: [
             Text(spec.key, style: const TextStyle(fontSize: 13, color: AppColors.muted)),
             const SizedBox(height: 4),
-            Text(spec.value,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+            Text(spec.value, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
           ],
         ),
       );
@@ -224,8 +223,8 @@ class _UnavailableNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-            color: AppColors.amberBg, borderRadius: BorderRadius.circular(14)),
+        decoration:
+            BoxDecoration(color: AppColors.amberBg, borderRadius: BorderRadius.circular(14)),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

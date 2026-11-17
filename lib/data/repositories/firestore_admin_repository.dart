@@ -27,8 +27,8 @@ class FirestoreAdminRepository implements AdminRepository {
   @override
   Future<void> decideApplication(AppUser user, {required bool approve}) => guardData(() async {
         final batch = _db.batch();
-        batch.update(_users.doc(user.uid),
-            {'status': approve ? UserStatus.active : UserStatus.rejected});
+        batch.update(
+            _users.doc(user.uid), {'status': approve ? UserStatus.active : UserStatus.rejected});
         if (approve && user.role == Role.expert) {
           final expert = Expert(
             id: user.uid,
@@ -62,8 +62,7 @@ class FirestoreAdminRepository implements AdminRepository {
       .map((q) => [for (final d in q.docs) disputeFromMap(d.id, d.data())]);
 
   @override
-  Future<void> createDispute(Dispute d) =>
-      guardData(() => _disputes.add(disputeToMap(d)));
+  Future<void> createDispute(Dispute d) => guardData(() => _disputes.add(disputeToMap(d)));
 
   @override
   Future<void> resolveDispute(String id, String resolution) => guardData(

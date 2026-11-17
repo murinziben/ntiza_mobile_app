@@ -63,8 +63,7 @@ void main() {
     testWidgets('password visibility toggle reveals the text', (tester) async {
       await tester.pumpWidget(_app(const LoginScreen()));
 
-      EditableText password() =>
-          tester.widget<EditableText>(find.byType(EditableText).at(1));
+      EditableText password() => tester.widget<EditableText>(find.byType(EditableText).at(1));
       expect(password().obscureText, isTrue);
 
       await tester.tap(find.byTooltip('Show password'));
@@ -131,7 +130,8 @@ void main() {
       String? picked;
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: ChipRow(labels: const ['All', 'Crops'], selected: 'All', onSelected: (v) => picked = v),
+          body: ChipRow(
+              labels: const ['All', 'Crops'], selected: 'All', onSelected: (v) => picked = v),
         ),
       ));
 

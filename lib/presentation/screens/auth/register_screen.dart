@@ -64,9 +64,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
           confirmPassword: _confirm.text,
         );
     if (!mounted) return;
-    showToast(context, result.ok
-        ? 'Account created. Check your e-mail to verify it.'
-        : result.error!);
+    showToast(
+        context, result.ok ? 'Account created. Check your e-mail to verify it.' : result.error!);
   }
 
   Future<void> _google() async {
@@ -163,8 +162,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             PrimaryButton(busy ? 'Please wait…' : 'Continue',
                 height: 54, onPressed: busy ? null : _submit),
             const SizedBox(height: 12),
-            OutlineButtonX('Continue with Google',
-                height: 54, onPressed: busy ? null : _google),
+            OutlineButtonX('Continue with Google', height: 54, onPressed: busy ? null : _google),
           ],
         ),
       ),
@@ -253,8 +251,8 @@ class RoleTile extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: selected ? AppColors.primary : Colors.white,
-                border: Border.all(
-                    color: selected ? AppColors.primary : AppColors.faint, width: 1.6),
+                border:
+                    Border.all(color: selected ? AppColors.primary : AppColors.faint, width: 1.6),
               ),
               child: selected ? const Icon(Icons.circle, size: 10, color: Colors.white) : null,
             ),

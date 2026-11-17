@@ -4,8 +4,18 @@ import '../../../core/theme/app_colors.dart';
 import '../../widgets/ui.dart';
 
 const _monthNames = [
-  'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
-  'September', 'October', 'November', 'December'
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
 ];
 
 /// First day of the current month — the calendar's starting page.
@@ -89,8 +99,7 @@ class CalendarCard extends StatelessWidget {
           for (var r = 0; r < cells.length ~/ 7; r++)
             Row(
               children: [
-                for (var c = 0; c < 7; c++)
-                  Expanded(child: _dayCell(cells[r * 7 + c], today)),
+                for (var c = 0; c < 7; c++) Expanded(child: _dayCell(cells[r * 7 + c], today)),
               ],
             ),
         ],

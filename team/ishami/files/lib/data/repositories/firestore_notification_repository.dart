@@ -25,8 +25,7 @@ class FirestoreNotificationRepository implements NotificationRepository {
       guardData(() => _col.add(notificationToMap(userId, title, body, kind)));
 
   @override
-  Future<void> markRead(String id) =>
-      guardData(() => _col.doc(id).update({'unread': false}));
+  Future<void> markRead(String id) => guardData(() => _col.doc(id).update({'unread': false}));
 
   @override
   Future<void> markAllRead(String uid) => guardData(() async {

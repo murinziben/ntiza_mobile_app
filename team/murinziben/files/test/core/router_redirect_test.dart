@@ -4,12 +4,17 @@ import 'package:ntiza/core/router/app_router.dart';
 import 'package:ntiza/domain/entities/entities.dart';
 
 const _verified = AuthSession(uid: 'u', email: 'u@x.rw', emailVerified: true, usesPassword: true);
-const _unverified = AuthSession(uid: 'u', email: 'u@x.rw', emailVerified: false, usesPassword: true);
+const _unverified =
+    AuthSession(uid: 'u', email: 'u@x.rw', emailVerified: false, usesPassword: true);
 
 AppUser _user(Role role, {String status = UserStatus.active}) =>
     AppUser(uid: 'u', name: 'Test User', role: role, status: status);
 
-String? _go(String loc, {AuthSession? session, AppUser? me, bool sessionLoading = false, bool profileLoading = false}) =>
+String? _go(String loc,
+        {AuthSession? session,
+        AppUser? me,
+        bool sessionLoading = false,
+        bool profileLoading = false}) =>
     decideRedirect(
       loc: loc,
       session: sessionLoading ? const AsyncLoading() : AsyncData(session),
@@ -19,12 +24,27 @@ String? _go(String loc, {AuthSession? session, AppUser? me, bool sessionLoading 
 void main() {
   group('signed out', () {
     test('may browse public screens', () {
-      for (final loc in ['/welcome', '/home', '/equipment', '/equipment/eq1', '/login', '/register', '/settings']) {
+      for (final loc in [
+        '/welcome',
+        '/home',
+        '/equipment',
+        '/equipment/eq1',
+        '/login',
+        '/register',
+        '/settings'
+      ]) {
         expect(_go(loc), isNull, reason: loc);
       }
     });
     test('is sent to login from protected screens', () {
-      for (final loc in ['/farmer', '/owner/equipment', '/admin/users', '/notifications', '/profile/edit', '/status']) {
+      for (final loc in [
+        '/farmer',
+        '/owner/equipment',
+        '/admin/users',
+        '/notifications',
+        '/profile/edit',
+        '/status'
+      ]) {
         expect(_go(loc), '/login', reason: loc);
       }
     });
@@ -46,9 +66,13 @@ void main() {
       expect(_go('/login', session: _verified, profileLoading: true), isNull);
     });
     test('pending and suspended accounts see the status screen', () {
-      expect(_go('/owner', session: _verified, me: _user(Role.owner, status: UserStatus.pending)), '/status');
-      expect(_go('/status', session: _verified, me: _user(Role.owner, status: UserStatus.pending)), isNull);
-      expect(_go('/farmer', session: _verified, me: _user(Role.farmer, status: UserStatus.suspended)), '/status');
+      expect(_go('/owner', session: _verified, me: _user(Role.owner, status: UserStatus.pending)),
+          '/status');
+      expect(_go('/status', session: _verified, me: _user(Role.owner, status: UserStatus.pending)),
+          isNull);
+      expect(
+          _go('/farmer', session: _verified, me: _user(Role.farmer, status: UserStatus.suspended)),
+          '/status');
     });
     test('active users leave entry screens for their own home', () {
       for (final loc in ['/welcome', '/login', '/register', '/home', '/status', '/verify-email']) {

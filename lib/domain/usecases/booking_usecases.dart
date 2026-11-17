@@ -121,8 +121,8 @@ class BookingUseCases {
           '${rwf(booking.total)} received via $via. Ref ${booking.ref}.', 'payment');
     }
     if (booking.providerId.isNotEmpty) {
-      await _notifications.add(booking.providerId, 'Booking paid',
-          '${booking.ref} was paid via $via.', 'payment');
+      await _notifications.add(
+          booking.providerId, 'Booking paid', '${booking.ref} was paid via $via.', 'payment');
     }
   }
 
@@ -139,8 +139,8 @@ class BookingUseCases {
     };
     for (final uid in {booking.farmerId, booking.agentId}) {
       if (uid.isNotEmpty) {
-        await _notifications.add(uid, 'Booking ${status.toLowerCase()}', text,
-            booking.expert ? 'expert' : 'booking');
+        await _notifications.add(
+            uid, 'Booking ${status.toLowerCase()}', text, booking.expert ? 'expert' : 'booking');
       }
     }
   }

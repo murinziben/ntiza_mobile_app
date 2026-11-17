@@ -45,8 +45,7 @@ class AdminController extends ActionNotifier {
       run(() => ref.read(adminRepositoryProvider).seedDemoData());
 }
 
-final adminControllerProvider =
-    NotifierProvider<AdminController, ActionState>(AdminController.new);
+final adminControllerProvider = NotifierProvider<AdminController, ActionState>(AdminController.new);
 
 /// Add, edit and remove the farmers an agent books for.
 class AgentController extends ActionNotifier {
@@ -68,8 +67,7 @@ class AgentController extends ActionNotifier {
       run(() => ref.read(agentUseCasesProvider).deleteClient(client.id));
 }
 
-final agentControllerProvider =
-    NotifierProvider<AgentController, ActionState>(AgentController.new);
+final agentControllerProvider = NotifierProvider<AgentController, ActionState>(AgentController.new);
 
 /// Mark-as-read and delete for the notification list.
 class NotificationController extends ActionNotifier {

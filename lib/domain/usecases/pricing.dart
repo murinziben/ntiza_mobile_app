@@ -77,7 +77,20 @@ class BookingStats {
     required DateTime now,
     int months = 6,
   }) {
-    const names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const names = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
     final result = <MonthTotal>[];
     for (var i = months - 1; i >= 0; i--) {
       final m = DateTime(now.year, now.month - i, 1);

@@ -14,8 +14,7 @@ class FirebaseAuthRepository implements AuthRepository {
   final FirebaseAuth _auth;
   final FirebaseFirestore _db;
 
-  DocumentReference<Map<String, dynamic>> _userDoc(String uid) =>
-      _db.collection('users').doc(uid);
+  DocumentReference<Map<String, dynamic>> _userDoc(String uid) => _db.collection('users').doc(uid);
 
   AuthSession? _sessionOf(User? user) => user == null
       ? null
@@ -41,8 +40,7 @@ class FirebaseAuthRepository implements AuthRepository {
 
   @override
   Future<AuthSession> registerWithEmail(String email, String password) => guardAuth(() async {
-        final cred =
-            await _auth.createUserWithEmailAndPassword(email: email, password: password);
+        final cred = await _auth.createUserWithEmailAndPassword(email: email, password: password);
         return _sessionOf(cred.user)!;
       });
 

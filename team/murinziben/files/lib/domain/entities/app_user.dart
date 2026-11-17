@@ -55,8 +55,7 @@ class AppUser {
 
   /// First given name, skipping honorifics such as `Dr.`.
   String get firstName {
-    final parts =
-        name.split(' ').where((p) => p.isNotEmpty && !p.endsWith('.')).toList();
+    final parts = name.split(' ').where((p) => p.isNotEmpty && !p.endsWith('.')).toList();
     return parts.isEmpty ? name : parts.first;
   }
 

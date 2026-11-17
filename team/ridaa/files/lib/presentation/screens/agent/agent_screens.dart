@@ -127,8 +127,7 @@ class AgentDashboard extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    const Expanded(
-                        flex: 5, child: AssetPhoto('hero_villagers.jpg', height: 140)),
+                    const Expanded(flex: 5, child: AssetPhoto('hero_villagers.jpg', height: 140)),
                   ],
                 ),
               ),
@@ -139,8 +138,8 @@ class AgentDashboard extends ConsumerWidget {
                   AppColors.green100, AppColors.primaryDark),
               StatSpec('${bookings.length}', 'Total Bookings', Icons.calendar_today_outlined,
                   AppColors.blueBg, AppColors.blue),
-              StatSpec('$pending', 'Pending', Icons.schedule, AppColors.amberBg,
-                  AppColors.amberText),
+              StatSpec(
+                  '$pending', 'Pending', Icons.schedule, AppColors.amberBg, AppColors.amberText),
               StatSpec(compactRwf(earned), 'Earned to date (RWF)', Icons.show_chart,
                   AppColors.purpleBg, AppColors.purple),
             ]),
@@ -156,8 +155,7 @@ class AgentDashboard extends ConsumerWidget {
                 padding: EdgeInsets.symmetric(vertical: 24),
                 child: Center(
                   child: Text('No bookings yet — book a machine for one of your farmers.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: AppColors.muted)),
+                      textAlign: TextAlign.center, style: TextStyle(color: AppColors.muted)),
                 ),
               ),
             for (final b in bookings.take(3)) ...[
@@ -289,8 +287,7 @@ class AgentFarmersScreen extends ConsumerWidget {
     );
   }
 
-  Widget _clientCard(
-      BuildContext context, WidgetRef ref, AgentClient c, List<Booking> bookings) {
+  Widget _clientCard(BuildContext context, WidgetRef ref, AgentClient c, List<Booking> bookings) {
     final mine = bookings.where((b) => b.clientName == c.name).toList();
     final last = mine.isEmpty ? 'no bookings yet' : 'last ${mine.first.dateLabel}';
     return PersonCard(
@@ -323,8 +320,7 @@ class _ClientDialog extends ConsumerStatefulWidget {
 
 class _ClientDialogState extends ConsumerState<_ClientDialog> {
   final _formKey = GlobalKey<FormState>();
-  late final TextEditingController _name =
-      TextEditingController(text: widget.existing?.name ?? '');
+  late final TextEditingController _name = TextEditingController(text: widget.existing?.name ?? '');
   late final TextEditingController _phone =
       TextEditingController(text: widget.existing?.phone ?? '');
   String? _district;
@@ -389,8 +385,8 @@ class _ClientDialogState extends ConsumerState<_ClientDialog> {
                   textInputAction: TextInputAction.next),
               const SizedBox(height: 14),
               const Text('District',
-                  style: TextStyle(
-                      fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.body)),
+                  style:
+                      TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.body)),
               const SizedBox(height: 8),
               DropdownButtonFormField<String>(
                 initialValue: _district,
@@ -541,8 +537,7 @@ class _AgentNewBookingScreenState extends ConsumerState<AgentNewBookingScreen> {
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
                   const SizedBox(height: 6),
                   const Text('You book machines on behalf of the farmers on your list.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: AppColors.muted)),
+                      textAlign: TextAlign.center, style: TextStyle(color: AppColors.muted)),
                   const SizedBox(height: 14),
                   PrimaryButton('Go to My Farmers', onPressed: () => context.go('/agent/farmers')),
                 ],
@@ -574,8 +569,7 @@ class _AgentNewBookingScreenState extends ConsumerState<AgentNewBookingScreen> {
             padding: EdgeInsets.zero,
             labels: options,
             selected: duration,
-            onSelected: (v) =>
-                ref.read(_durationIndexProvider.notifier).state = options.indexOf(v),
+            onSelected: (v) => ref.read(_durationIndexProvider.notifier).state = options.indexOf(v),
           ),
           const SizedBox(height: 16),
           Container(
@@ -639,8 +633,7 @@ class _AgentNewBookingScreenState extends ConsumerState<AgentNewBookingScreen> {
               onChanged: (v) => ref.read(_selectedClientIdProvider.notifier).state = v,
             ),
             const SizedBox(height: 20),
-            const Text('2. Machine',
-                style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700)),
+            const Text('2. Machine', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700)),
             const SizedBox(height: 10),
             if (available.isEmpty)
               const AppCard(
@@ -709,8 +702,8 @@ class _AgentNewBookingScreenState extends ConsumerState<AgentNewBookingScreen> {
                           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                     ),
                     const Text('Change',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, color: AppColors.primaryDark)),
+                        style:
+                            TextStyle(fontWeight: FontWeight.w700, color: AppColors.primaryDark)),
                   ],
                 ),
               ),
@@ -755,8 +748,7 @@ class _AgentNewBookingScreenState extends ConsumerState<AgentNewBookingScreen> {
   Widget _sumRow(String label, String value) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Flexible(
-              child: Text(label, style: const TextStyle(fontSize: 15, color: AppColors.body))),
+          Flexible(child: Text(label, style: const TextStyle(fontSize: 15, color: AppColors.body))),
           const SizedBox(width: 8),
           Text(value, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
         ],
@@ -826,9 +818,7 @@ class AgentCommissionScreen extends ConsumerWidget {
                   '${b.title} · ${b.customerName}',
                   '${b.dateLabel} · ${b.status.toLowerCase()}',
                   '+${rwf(_commissionOf(b)).replaceFirst('RWF ', '')}',
-                  bg: b.status == BookingStatus.completed
-                      ? AppColors.green100
-                      : AppColors.amberBg,
+                  bg: b.status == BookingStatus.completed ? AppColors.green100 : AppColors.amberBg,
                   fg: b.status == BookingStatus.completed
                       ? AppColors.primaryDark
                       : AppColors.amberText,

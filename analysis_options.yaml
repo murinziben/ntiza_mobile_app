@@ -6,6 +6,9 @@ analyzer:
     - team/**   # per-person copies used for pushing; the real code is in lib/ and test/
 include: package:flutter_lints/flutter.yaml
 
+formatter:
+  page_width: 100
+
 linter:
   rules:
     prefer_const_constructors: true

@@ -155,8 +155,8 @@ class _BookExpertScreenState extends ConsumerState<BookExpertScreen> {
             const SizedBox(height: 18),
             Container(
               padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  color: AppColors.green50, borderRadius: BorderRadius.circular(18)),
+              decoration:
+                  BoxDecoration(color: AppColors.green50, borderRadius: BorderRadius.circular(18)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -167,9 +167,7 @@ class _BookExpertScreenState extends ConsumerState<BookExpertScreen> {
                   const SizedBox(width: 8),
                   Text(rwf(expert.fee),
                       style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.primaryDark)),
+                          fontSize: 18, fontWeight: FontWeight.w800, color: AppColors.primaryDark)),
                 ],
               ),
             ),

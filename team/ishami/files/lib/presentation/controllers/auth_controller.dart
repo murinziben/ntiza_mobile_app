@@ -16,7 +16,9 @@ class AuthController extends ActionNotifier {
   Future<ActionResult<void>> signIn(String email, String password, {required bool remember}) =>
       run(() async {
         await ref.read(authUseCasesProvider).signIn(email, password);
-        await ref.read(settingsControllerProvider.notifier).setRememberedEmail(remember ? email : '');
+        await ref
+            .read(settingsControllerProvider.notifier)
+            .setRememberedEmail(remember ? email : '');
       });
 
   Future<ActionResult<AppUser>> register({
@@ -83,9 +85,7 @@ class AuthController extends ActionNotifier {
             .updateProfile(uid, name: name, phone: phone, district: district);
       });
 
-  Future<ActionResult<void>> signOut() =>
-      run(() => ref.read(authRepositoryProvider).signOut());
+  Future<ActionResult<void>> signOut() => run(() => ref.read(authRepositoryProvider).signOut());
 }
 
-final authControllerProvider =
-    NotifierProvider<AuthController, ActionState>(AuthController.new);
+final authControllerProvider = NotifierProvider<AuthController, ActionState>(AuthController.new);

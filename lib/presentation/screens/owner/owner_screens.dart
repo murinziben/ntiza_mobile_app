@@ -24,14 +24,19 @@ const ownerNav = [
 /// Bookings for the owner's machines (consultations belong to experts).
 final _ownerBookingsProvider = Provider.autoDispose<List<Booking>>((ref) {
   final all = ref.watch(providerBookingsProvider).valueOrNull ?? const <Booking>[];
-  return [for (final b in all) if (!b.expert) b];
+  return [
+    for (final b in all)
+      if (!b.expert) b
+  ];
 });
 
 final _equipmentFilterProvider = StateProvider.autoDispose<String>((ref) => 'All');
 final _bookingFilterProvider = StateProvider.autoDispose<String>((ref) => 'Requests');
 
-List<Booking> _withStatus(List<Booking> list, String status) =>
-    [for (final b in list) if (b.status == status) b];
+List<Booking> _withStatus(List<Booking> list, String status) => [
+      for (final b in list)
+        if (b.status == status) b
+    ];
 
 // ---------------------------------------------------------------------------
 // Dashboard
@@ -47,7 +52,10 @@ class OwnerDashboard extends ConsumerWidget {
     final mine = ref.watch(myEquipmentProvider);
     final requests = _withStatus(bookings, BookingStatus.pending);
     final earnings = EarningsView.from(bookings);
-    final inRepair = [for (final e in mine) if (e.status == EquipmentStatus.maintenance) e];
+    final inRepair = [
+      for (final e in mine)
+        if (e.status == EquipmentStatus.maintenance) e
+    ];
 
     return Scaffold(
       body: SafeArea(
@@ -62,8 +70,8 @@ class OwnerDashboard extends ConsumerWidget {
                   AppColors.green100, AppColors.primaryDark),
               StatSpec('${mine.where((e) => e.available).length}', 'Available Now',
                   Icons.check_circle_outline, AppColors.blueBg, AppColors.blue),
-              StatSpec('${requests.length}', 'Pending Requests', Icons.schedule,
-                  AppColors.amberBg, AppColors.amberText),
+              StatSpec('${requests.length}', 'Pending Requests', Icons.schedule, AppColors.amberBg,
+                  AppColors.amberText),
               StatSpec(compactRwf(earnings.net), 'Total Earnings (RWF)', Icons.payments_outlined,
                   AppColors.purpleBg, AppColors.purple),
             ]),
@@ -170,7 +178,10 @@ class OwnerEquipmentScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final filter = ref.watch(_equipmentFilterProvider);
     final mine = ref.watch(myEquipmentProvider);
-    final items = [for (final e in mine) if (filter == 'All' || e.status == filter) e];
+    final items = [
+      for (final e in mine)
+        if (filter == 'All' || e.status == filter) e
+    ];
     return Scaffold(
       appBar: const TopBar('My Equipment', back: false),
       body: ListView(
@@ -581,10 +592,7 @@ class OwnerBookingsScreen extends ConsumerWidget {
                   EmptyNote(filter == 'Requests' ? 'No pending requests.' : 'Nothing here yet.',
                       padding: 50),
                 for (final b in shown) ...[
-                  if (filter == 'Requests')
-                    _RequestTile(booking: b)
-                  else
-                    _BookingRow(booking: b),
+                  if (filter == 'Requests') _RequestTile(booking: b) else _BookingRow(booking: b),
                   const SizedBox(height: 12),
                 ],
               ],

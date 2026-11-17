@@ -36,8 +36,7 @@ class NtizaBottomNav extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(items[i].icon,
-                              size: 25,
-                              color: i == index ? AppColors.primary : AppColors.faint),
+                              size: 25, color: i == index ? AppColors.primary : AppColors.faint),
                           const SizedBox(height: 3),
                           Text(items[i].label,
                               style: TextStyle(

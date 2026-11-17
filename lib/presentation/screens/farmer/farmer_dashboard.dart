@@ -92,9 +92,7 @@ class FarmerDashboard extends ConsumerWidget {
                             style: TextStyle(color: Colors.white, fontSize: 13.5)),
                         const SizedBox(height: 12),
                         OutlineButtonX('Book Now',
-                            height: 48,
-                            expand: false,
-                            onPressed: () => context.go('/farmer/book')),
+                            height: 48, expand: false, onPressed: () => context.go('/farmer/book')),
                       ],
                     ),
                   ),
@@ -135,20 +133,19 @@ class FarmerDashboard extends ConsumerWidget {
                         () => context.go('/farmer/book'))),
                 const SizedBox(width: 12),
                 Expanded(
-                    child: _Action('Book Expert', Icons.groups_2_outlined,
-                        () => context.push('/experts'))),
+                    child: _Action(
+                        'Book Expert', Icons.groups_2_outlined, () => context.push('/experts'))),
                 const SizedBox(width: 12),
                 Expanded(
-                    child: _Action('Training', Icons.menu_book_outlined,
-                        () => context.go('/farmer/learn'))),
+                    child: _Action(
+                        'Training', Icons.menu_book_outlined, () => context.go('/farmer/learn'))),
               ],
             ),
             const SizedBox(height: 24),
             SectionHeader('Recent Bookings',
                 action: 'View all', onAction: () => context.go('/farmer/bookings')),
             const SizedBox(height: 12),
-            if (bookings.isEmpty)
-              const EmptyNote('No bookings yet — book your first machine.'),
+            if (bookings.isEmpty) const EmptyNote('No bookings yet — book your first machine.'),
             for (final b in bookings.take(3)) ...[
               BookingRow(
                   booking: b,
